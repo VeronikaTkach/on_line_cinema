@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  // @font-face {
+  //   font-family: 'Gerbera';
+  //   font-style: normal;
+  //   font-weight: 400;
+  //   font-display: swap;
+  //   src: url(./assets/fonts/Gerbera.woff) format('woff');
+  // }
+}
+
+@layer components {
+  #root {
+    @apply p-0 bg-white;
+  }
+  body {
+    @apply m-0 p-0 bg-white w-screen h-screen;
+  }
+
+  // .btn-B-GreenDefault {
+  //   @apply w-[328px] h-12 rounded-[40px] font-gerbera-h3  bg-light-brand-green text-light-gray-white;
+  // }
+}
