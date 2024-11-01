@@ -1,0 +1,27 @@
+.privacy-policy {
+  color: rgba(227, 230, 240, 0.72);
+  font-size: 15px;
+  font-weight: 400;
+  text-align: center;
+  text-decoration: none;
+}
+
+.privacy-policy__text {
+  margin-bottom: 35px;
+}
+
+.privacy-policy__link {
+  position: relative;
+  cursor: pointer;
+}
+
+.privacy-policy__link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 1px;
+  background-color: currentColor;
+  transition: background-color 0.3s;
+}
