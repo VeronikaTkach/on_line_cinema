@@ -1,7 +1,13 @@
 .link {
   color: rgb(255, 255, 255);
   font-size: 17px;
-  font-weight: 700;
+  font-weight: 600;
   line-height: 21px;
   cursor: pointer;
+
+  transition: color 0.3s ease;
+}
+
+.link:hover {
+  color: rgb(192, 191, 191);
 }

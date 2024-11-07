@@ -5,6 +5,7 @@ import { Link } from "./components/Link/Link";
 import { MenuList } from "./components/MenuList/MenuList";
 import { PrivacyPolicy } from "./components/PrivacyPolicy/PrivacyPolicy";
 import SocialIcons from "./components/SocialIcons/SocialIcons";
+import Container from "./layouts/Container/Container";
 
 function App() {
   const data = [
@@ -19,13 +20,15 @@ function App() {
     <>
       <Header />
       <Footer>
-        <SocialIcons />
-        <MenuList>
-          {data.map((el, index) => (
-            <Link key={index}>{el.text}</Link>
-          ))}
-        </MenuList>
-        <PrivacyPolicy text={"Политика конфиденциальности"} />
+        <Container>
+          <SocialIcons />
+          <MenuList>
+            {data.map((el, index) => (
+              <Link key={index}>{el.text}</Link>
+            ))}
+          </MenuList>
+          <PrivacyPolicy text={"Политика конфиденциальности"} />
+        </Container>
       </Footer>
     </>
   );
