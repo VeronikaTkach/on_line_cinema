@@ -45,6 +45,28 @@ const socialStyles = {
 export const AuthModal: React.FC = () => {
   const [isAuthOpen, setAuthOpen] = useState(false);
   const [isRegisterOpen, setRegisterOpen] = useState(false);
+  //сюда дописать состояния для почты, пароля, сообщения об ошибке, пример:
+  // const [email, setEmail] = useState("");
+
+
+  //сюда прописать регулярные выражения для почты и пароля
+  // const emailRegex = 
+  // const passwordRegex =
+
+  //здесь прописать логику валидации - это либо 
+  // const handleSubmit = (e: React.FormEvent) - по нажатию на кнопку проверяются оба поля
+  // либо более сложный вариант, когда при вводе поле подсвечено красным до тех пор, пока введенное значение не станет соответствовать Regex
+
+      // Проверка email и пароля
+      // if (!emailRegex.test(email) || !passwordRegex.test(password)) {
+      //   setErrorMessage("Данные введены неверно");
+      //   return;
+      // }
+
+      // setErrorMessage("") сброс ошибки, если всё верно введено;
+  //здесь handleSubmit заканчивается
+
+  //в html добавить для каждой формы handleSubmit и внизу добавить поле для вывода ошибки из setError
 
   return (
     <>
