@@ -1,5 +1,4 @@
 import React, { ReactNode } from "react";
-import styles from "./Container.module.css"; // Импортируем стили как модуль
 
 interface ContainerProps {
   children: ReactNode;
@@ -8,9 +7,7 @@ interface ContainerProps {
 
 const Container: React.FC<ContainerProps> = ({ children, className = "" }) => {
   return (
-    <div className={`${styles["native-container"]} ${className}`}>
-      {children}
-    </div>
+    <div className={`mx-auto clamp-container ${className}`}>{children}</div>
   );
 };
 

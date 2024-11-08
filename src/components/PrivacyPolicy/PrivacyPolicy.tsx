@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "./PrivacyPolicy.css";
 import { Popup } from "../Popup/Popup";
 
 interface PrivacyPolicyProps {
@@ -19,11 +18,14 @@ export const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ text }) => {
   };
 
   return (
-    <div className="privacy-policy">
-      <p className="privacy-policy__text">
+    <div className="text-smoke-white text-center lg:text-sm text-xs font-light">
+      <p className="xl:mb-7 lg:mb-5 md:mb-3 mb-2">
         2020 © Kinoarea. Все права защищены
       </p>
-      <a className=" privacy-policy__link" onClick={handleClick}>
+      <a
+        className="relative cursor-pointer after:absolute after:left-0 after:bottom-[-2px] after:w-full after:h-[1px] after:bg-current after:transition-all hover:after:bg-opacity-60"
+        onClick={handleClick}
+      >
         {text}
       </a>
       {isPopupOpen && <Popup onClose={handleClose} />}
