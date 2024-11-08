@@ -13,12 +13,7 @@ export const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ text }) => {
     setIsPopupOpen(true);
   };
 
-  const handleClose = () => {
-    setIsPopupOpen(false);
-  };
-
-  const toggleOpenPopUp = (e) => {
-    // e.preventDefault();
+  const toggleOpenPopUp = () => {
     setIsPopupOpen(!isPopupOpen);
   };
 
