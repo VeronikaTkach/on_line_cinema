@@ -1,15 +1,22 @@
-import React, { Fragment } from "react";
+import { Link } from "react-router-dom";
+// import search from '../../assets/icons/'
 
 export const Header: React.FC = () => {
   return (
-    <Fragment>
-      <div>0</div>
-      <div className="bg-dark-gray-white" style={{ display: "flex" }}>
-        <div>1</div>
-        <div>2</div>
-        <div>3</div>
-      </div>
-      <div>4</div>
-    </Fragment>
+    <header>
+      <nav
+        className="bg-dark-gray-white"
+        style={{ display: "flex", justifyContent: "space-around" }}
+      >
+        <Link to="/afisha">ЛОГО</Link>
+        <Link to="/afisha">Афиша</Link>
+        <Link to="/media">Медиа</Link>
+        <Link to="/films">Фильмы</Link>
+        <Link to="/actors">Актеры</Link>
+        <Link to="/news">Новости</Link>
+        <Link to="/selections">Подборки</Link>
+        <Link to="/categories">Категории</Link>
+      </nav>
+    </header>
   );
 };
