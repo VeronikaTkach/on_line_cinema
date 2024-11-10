@@ -6,12 +6,12 @@ import { PrivacyPolicy } from "../PrivacyPolicy/PrivacyPolicy";
 
 export const Footer: React.FC = () => {
   const data = [
-    { text: "Афиша", href: "#" },
-    { text: "Новости", href: "#" },
-    { text: "Персоны", href: "#" },
+    { text: "Афиша", href: "/afisha" },
+    { text: "Новости", href: "/news" },
+    { text: "Персоны", href: "/actors" },
     { text: "Рейтинги", href: "#" },
     { text: "Рецензии", href: "#" },
-    { text: "Каталог фильмов", href: "#" },
+    { text: "Каталог фильмов", href: "/films" },
   ];
 
   return (

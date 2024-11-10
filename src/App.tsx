@@ -27,8 +27,8 @@ function App() {
           <Route path="/selections" element={<Selections />} />
           <Route path="/categories" element={<Categories />} />
         </Routes>
+        <Footer />
       </Router>
-      <Footer />
     </>
   );
 }
