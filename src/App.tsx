@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Footer } from "./components/Footer/Footer";
 import { Header } from "./components/Header/Header";
 import Afisha from "./pages/Afisha";
 import Films from "./pages/Films";
@@ -12,19 +13,22 @@ import "./App.css";
 
 function App() {
   return (
-    <Router>
-      <Header />
-      <Routes>
-        <Route path="/" element={<Logo />} />
-        <Route path="/afisha" element={<Afisha />} />
-        <Route path="/media" element={<Media />} />
-        <Route path="/films" element={<Films />} />
-        <Route path="/actors" element={<Actors />} />
-        <Route path="/news" element={<News />} />
-        <Route path="/selections" element={<Selections />} />
-        <Route path="/categories" element={<Categories />} />
-      </Routes>
-    </Router>
+    <>
+      <Router>
+        <Header />
+        <Routes>
+          <Route path="/" element={<Logo />} />
+          <Route path="/afisha" element={<Afisha />} />
+          <Route path="/media" element={<Media />} />
+          <Route path="/films" element={<Films />} />
+          <Route path="/actors" element={<Actors />} />
+          <Route path="/news" element={<News />} />
+          <Route path="/selections" element={<Selections />} />
+          <Route path="/categories" element={<Categories />} />
+        </Routes>
+        <Footer />
+      </Router>
+    </>
   );
 }
 
