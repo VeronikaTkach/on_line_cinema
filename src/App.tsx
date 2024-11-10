@@ -1,7 +1,6 @@
-import "./App.css";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Footer } from "./components/Footer/Footer";
 import { Header } from "./components/Header/Header";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Afisha from "./pages/Afisha";
 import Films from "./pages/Films";
 import Categories from "./pages/Categories";

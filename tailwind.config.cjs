@@ -13,7 +13,8 @@ module.exports = {
       // => @media (min-width: 768px) { ... }
 
       lg: "1000px",
-      // => @media (min-width: 1024px) { ... }
+      
+      // => @media (min-width: 1000px) { ... }
 
       xl: "1280px",
       // => @media (min-width: 1280px) { ... }
@@ -22,10 +23,13 @@ module.exports = {
       // => @media (min-width: 1536px) { ... }
     },
     extend: {
-      opacity: {
-        47: "0.47",
+
+      fontFamily: {
+        qanelas: ["Qanelas"],
       },
       colors: {
+        dark: "#1E2538",
+
         "custom-dark": "rgb(21, 26, 38)",
         "yellow-bright": "#F2F60F",
         "electric-violet": "#3657CB",
