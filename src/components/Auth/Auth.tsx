@@ -48,22 +48,21 @@ export const AuthModal: React.FC = () => {
   //сюда дописать состояния для почты, пароля, сообщения об ошибке, пример:
   // const [email, setEmail] = useState("");
 
-
   //сюда прописать регулярные выражения для почты и пароля
-  // const emailRegex = 
+  // const emailRegex =
   // const passwordRegex =
 
-  //здесь прописать логику валидации - это либо 
+  //здесь прописать логику валидации - это либо
   // const handleSubmit = (e: React.FormEvent) - по нажатию на кнопку проверяются оба поля
   // либо более сложный вариант, когда при вводе поле подсвечено красным до тех пор, пока введенное значение не станет соответствовать Regex
 
-      // Проверка email и пароля
-      // if (!emailRegex.test(email) || !passwordRegex.test(password)) {
-      //   setErrorMessage("Данные введены неверно");
-      //   return;
-      // }
+  // Проверка email и пароля
+  // if (!emailRegex.test(email) || !passwordRegex.test(password)) {
+  //   setErrorMessage("Данные введены неверно");
+  //   return;
+  // }
 
-      // setErrorMessage("") сброс ошибки, если всё верно введено;
+  // setErrorMessage("") сброс ошибки, если всё верно введено;
   //здесь handleSubmit заканчивается
 
   //в html добавить для каждой формы handleSubmit и внизу добавить поле для вывода ошибки из setError
@@ -72,7 +71,10 @@ export const AuthModal: React.FC = () => {
     <>
       <Dialog.Root open={isAuthOpen} onOpenChange={setAuthOpen}>
         <Dialog.Trigger asChild>
-          <button style={{ marginLeft: "auto" }} onClick={() => setAuthOpen(true)}>
+          <button
+            style={{ marginLeft: "auto" }}
+            onClick={() => setAuthOpen(true)}
+          >
             Войти
           </button>
         </Dialog.Trigger>
@@ -132,17 +134,17 @@ export const AuthModal: React.FC = () => {
             <div style={{ display: "flex", gap: "10px", marginTop: "10px" }}>
               <Link to="#">
                 <button style={socialStyles}>
-                  <img src="/vk.svg" alt="VK icon" />
+                  <img src="./src/assets/images/vk.svg" alt="VK icon" />
                 </button>
               </Link>
               <Link to="#">
                 <button style={socialStyles}>
-                  <img src="/google.svg" alt="Google icon" />
+                  <img src="./src/assets/images/google.svg" alt="Google icon" />
                 </button>
               </Link>
               <Link to="#">
                 <button style={socialStyles}>
-                  <img src="/yandex.svg" alt="Yandex icon" />
+                  <img src="./src/assets/images/yandex.svg" alt="Yandex icon" />
                 </button>
               </Link>
             </div>
@@ -157,7 +159,10 @@ export const AuthModal: React.FC = () => {
         </Dialog.Portal>
       </Dialog.Root>
 
-      <RegisterModal isOpen={isRegisterOpen} onClose={() => setRegisterOpen(false)} />
+      <RegisterModal
+        isOpen={isRegisterOpen}
+        onClose={() => setRegisterOpen(false)}
+      />
     </>
   );
 };
