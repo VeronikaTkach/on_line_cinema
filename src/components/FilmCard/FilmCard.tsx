@@ -9,15 +9,17 @@ const FilmCard = ({ film }: FilmProp) => {
 
   return (
     <div className="max-w-full w-full relative grid gap-2">
-      <div className="w-full relative  aspect-[339/462]">
+      <div className="w-full relative aspect-[339/462] group">
         <img
           className="w-full h-full object-cover rounded-xl absolute top-0 left-0"
           src={image}
           alt="film-img"
         />
+        <div className="absolute inset-0 bg-black bg-opacity-50 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center z-10">
+          <button className="bg-white text-[14px] font-[700] text-[#3657CB] py-[13px] px-[17px] rounded-lg">Карточка фильма</button>
+        </div>
       </div>
-
-      <div className="absolute top-3 lg:text-[18px] right-3 bg-[#4BCB36] text-[12px] py-1 px-3 rounded-md">
+      <div className="absolute top-3 lg:text-[18px] right-3 bg-[#4BCB36] text-[12px] py-1 px-3 rounded-md z-20">
         {rating}
       </div>
 
@@ -31,10 +33,10 @@ const FilmCard = ({ film }: FilmProp) => {
               : item.toLowerCase();
 
           return (
-            <p key={item} className="text-[15px] text-[#F2F60F] font-thin mr-2">
+            <button key={item} className="text-[15px] text-[#F2F60F] font-thin mr-2">
               {formattedItem}
               {index < genre.length - 1 ? "," : ""}
-            </p>
+            </button>
           );
         })}
       </div>
