@@ -15,7 +15,6 @@ function App() {
   return (
     <>
       <Router>
-        <Header />
         <Routes>
           <Route path="/" element={<Logo />} />
           <Route path="/afisha" element={<Afisha />} />
@@ -26,7 +25,7 @@ function App() {
           <Route path="/selections" element={<Selections />} />
           <Route path="/categories" element={<Categories />} />
         </Routes>
-        <Footer />
+        
       </Router>
     </>
   );
