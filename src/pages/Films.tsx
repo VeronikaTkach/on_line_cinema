@@ -35,7 +35,7 @@ const Films = () => {
   return (
     <div className="">
       <h2>Films</h2>
-      <div className="grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 gap-5 w-full max-w-full box-border">{films.map((item)=>{
+      <div className="grid grid-cols-1 xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 gap-5 w-full max-w-full box-border">{films.map((item)=>{
         return <FilmCard key={item.id} film={item}/>
       })}</div>
     </div>

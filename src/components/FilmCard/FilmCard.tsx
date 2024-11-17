@@ -16,7 +16,7 @@ const FilmCard = ({ film }: FilmProp) => {
           alt="film-img"
         />
         <div className="absolute inset-0 bg-black bg-opacity-50 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center z-10">
-          <button className="bg-white text-[14px] font-[700] text-[#3657CB] py-[13px] px-[17px] rounded-lg">Карточка фильма</button>
+          <button className="btn-adaptive-white">Карточка фильма</button>
         </div>
       </div>
       <div className="absolute top-3 lg:text-[18px] right-3 bg-[#4BCB36] text-[12px] py-1 px-3 rounded-md z-20">
