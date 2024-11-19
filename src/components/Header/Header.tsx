@@ -4,11 +4,20 @@ import { AuthModal } from "../Auth/Auth";
 export const Header: React.FC = () => {
   return (
     <header>
-      <div className="container" style={{ display: "flex", justifyContent: "space-between" }}>
-        <Link to="/afisha" style={{marginRight: '2rem'}}>ЛОГО</Link>
+      <div
+        className="container"
+        style={{ display: "flex", justifyContent: "space-between" }}
+      >
+        <Link to="/afisha" style={{ marginRight: "2rem" }}>
+          ЛОГО
+        </Link>
         <nav
           className="bg-dark-gray-white"
-          style={{ display: "flex", justifyContent: "space-around", flexGrow: 1 }}
+          style={{
+            display: "flex",
+            justifyContent: "space-around",
+            flexGrow: 1,
+          }}
         >
           <NavLink to="/afisha">Афиша</NavLink>
           <NavLink to="/media">Медиа</NavLink>
@@ -18,7 +27,7 @@ export const Header: React.FC = () => {
           <NavLink to="/selections">Подборки</NavLink>
           <NavLink to="/categories">Категории</NavLink>
         </nav>
-        <AuthModal/>
+        <AuthModal />
       </div>
     </header>
   );
