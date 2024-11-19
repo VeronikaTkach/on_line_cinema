@@ -1,6 +1,6 @@
 const SocialIcons = () => {
   const clLink =
-    "focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-custom-dark";
+    "focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-darks-primary";
   const clImg =
     "xl:max-w-7 lg:max-w-6 md:max-w-5 max-w-4 transition-all duration-500 ease-in-out hover:brightness-0 hover:invert hover:saturate-100 hover:sepia-0";
 
