@@ -142,7 +142,7 @@
     @apply rounded-[10px] text-xs font-semibold bg-transparent border-2 border-white text-white;
 
     &:hover {
-      @apply bg-white text-custom-dark transition-all duration-300 ease-in-out;
+      @apply bg-white text-darks-primary transition-all duration-300 ease-in-out;
     }
 
     &:active {
@@ -168,7 +168,7 @@
     @apply rounded-[10px] text-sm font-semibold bg-white  text-blues-cobalt;
 
     &:hover {
-      @apply bg-white text-custom-dark transition-all duration-300 ease-in-out;
+      @apply bg-white text-darks-primary transition-all duration-300 ease-in-out;
     }
 
     &:active {
@@ -192,7 +192,7 @@
 
   // Default styles for button no sizes
   .btn-default-yellow {
-    @apply rounded-[10px] text-xs font-semibold bg-yellows-lime  text-custom-dark;
+    @apply rounded-[10px] text-xs font-semibold bg-yellows-lime  text-darks-primary;
 
     &:hover {
       @apply bg-white transition-all duration-300 ease-in-out;
