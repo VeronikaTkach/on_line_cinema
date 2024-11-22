@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import { DialogContentProps } from "@radix-ui/react-dialog";
-// МК: здесь нужно сделать все тоже самое, что и в файле Auth.tsx, к слову, название Login.tsx подходит лучше для окна входа
+
+// МК: здесь нужно сделать все тоже самое, что и в файле Auth.tsx, к слову, название Login.tsx подходит лучше для окна входа.
+
 const overlayStyles = {
   backgroundColor: "rgba(0, 0, 0, 0.7)",
   position: "fixed" as const,

@@ -12,6 +12,7 @@ export const Header: React.FC = () => {
         <Link to="/afisha" style={{ marginRight: "2rem" }}>
           ЛОГО
         </Link>
+
         {/* MK:  nav и все что внтури я бы удалила и пересипользовала бы компонент NavLink из футера */}
         <nav
           className="bg-dark-gray-white"
