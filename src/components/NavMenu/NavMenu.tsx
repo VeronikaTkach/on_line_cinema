@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { NavMenuProps } from "./nav-menu.interfaces";
 
 export const NavMenu: React.FC<NavMenuProps> = ({ menuItems, className }) => {
@@ -11,9 +11,9 @@ export const NavMenu: React.FC<NavMenuProps> = ({ menuItems, className }) => {
       <ul className={className}>
         {menuItems.map((el, index) => (
           <li key={index}>
-            <Link className={cl} to={el.href} key={index}>
+            <NavLink className={cl} to={el.href} key={index}>
               {el.text}
-            </Link>
+            </NavLink>
           </li>
         ))}
       </ul>
