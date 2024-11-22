@@ -16,6 +16,7 @@ function App() {
     <>
       <Router>
         <Header />
+        {/* MK: роутинг надо вынести в отдельный файл, так как он будет увеличиваться */}
         <Routes>
           <Route path="/" element={<Logo />} />
           <Route path="/afisha" element={<Afisha />} />

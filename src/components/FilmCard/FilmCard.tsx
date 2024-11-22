@@ -8,6 +8,7 @@ const FilmCard = ({ film }: FilmProp) => {
   const { title, rating, genre, image } = film;
 
   return (
+    // не совсем понимаю почему max-w-full w-full - нужна же адаптивность под все размеры. эндпоинты прописаны в файле tailwind.config.cjs
     <div className="max-w-full w-full relative grid gap-2">
       <div className="w-full relative aspect-[339/462] group">
         <img
@@ -33,7 +34,10 @@ const FilmCard = ({ film }: FilmProp) => {
               : item.toLowerCase();
 
           return (
-            <button key={item} className="text-[15px] text-[#F2F60F] font-thin mr-2">
+            <button
+              key={item}
+              className="text-[15px] text-[#F2F60F] font-thin mr-2"
+            >
               {formattedItem}
               {index < genre.length - 1 ? "," : ""}
             </button>

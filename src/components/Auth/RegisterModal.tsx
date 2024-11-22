@@ -1,8 +1,7 @@
-
 import React, { useState } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import { DialogContentProps } from "@radix-ui/react-dialog";
-
+// МК: здесь нужно сделать все тоже самое, что и в файле Auth.tsx, к слову, название Login.tsx подходит лучше для окна входа
 const overlayStyles = {
   backgroundColor: "rgba(0, 0, 0, 0.7)",
   position: "fixed" as const,
@@ -52,17 +51,14 @@ const RegisterModal: React.FC<RegisterModalProps> = ({ isOpen, onClose }) => {
     e.preventDefault();
     const newErrors: string[] = [];
 
-    
     if (login.length < 3) {
       newErrors.push("Логин должен содержать минимум 3 символа");
     }
 
-    
     if (password !== confirmPassword) {
       newErrors.push("Пароли не совпадают");
     }
 
-   
     if (!isPrivacyChecked) {
       newErrors.push("Необходимо согласиться с политикой конфиденциальности");
     }
@@ -74,7 +70,7 @@ const RegisterModal: React.FC<RegisterModalProps> = ({ isOpen, onClose }) => {
       setErrors(newErrors);
     } else {
       setErrors([]);
-      onClose(); 
+      onClose();
     }
   };
 
@@ -135,7 +131,6 @@ const RegisterModal: React.FC<RegisterModalProps> = ({ isOpen, onClose }) => {
               required
             />
 
-           
             <label
               style={{ display: "flex", alignItems: "center", margin: "5px 0" }}
             >
@@ -173,7 +168,9 @@ const RegisterModal: React.FC<RegisterModalProps> = ({ isOpen, onClose }) => {
             </button>
           </form>
           <Dialog.Close asChild>
-            <button style={{ position: "absolute", top: "10px", right: "10px" }}>
+            <button
+              style={{ position: "absolute", top: "10px", right: "10px" }}
+            >
               X
             </button>
           </Dialog.Close>
