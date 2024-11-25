@@ -18,7 +18,7 @@ export const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ text }) => {
   };
 
   return (
-    <div className="text-smoke-white text-center lg:text-sm text-xs font-light">
+    <div className="text-grays-pale text-opacity-75 text-center lg:text-sm text-xs font-light">
       <p className="xl:mb-7 lg:mb-5 md:mb-3 mb-2">
         2020 © Kinoarea. Все права защищены
       </p>
@@ -34,11 +34,11 @@ export const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ text }) => {
         noColor={false}
       >
         <div className="fixed top-0 left-0 right-0 bottom-0 flex justify-center items-center bg-black bg-opacity-50">
-          <div className="px-6 py-6 sm:px-8 sm:py-8 md:px-[50px] md:py-[40px] lg:px-[150px] lg:py-[41px] bg-custom-dark text-white rounded-lg shadow-lg text-center text-xs md:text-lg font-medium">
+          <div className="px-6 py-6 sm:px-8 sm:py-8 md:px-[50px] md:py-[40px] lg:px-[150px] lg:py-[41px] bg-darks-primary text-white rounded-lg shadow-lg text-center text-xs md:text-lg font-medium">
             <h2 className="mb-4 sm:mb-6 md:mb-[30px] lg:mb-[50px]">
               Функционал в разработке, будет доступен позже.
             </h2>
-            <button className="px-2 py-1 sm:px-5 sm:py-1 md:px-6 md:py-2 lg:px-8 lg:py-2 bg-electric-violet text-white border-2 border-electric-violet rounded-lg shadow-[0_0_7px_0_rgba(72,113,255,0.6)] hover:border-white text-xs md:text-lg">
+            <button className="px-2 py-1 sm:px-5 sm:py-1 md:px-6 md:py-2 lg:px-8 lg:py-2 bg-blues-cobalt text-white border-2 border-blues-cobalt rounded-lg shadow-[0_0_7px_0_rgba(72,113,255,0.6)] hover:border-white text-xs md:text-lg">
               Закрыть
             </button>
           </div>

@@ -15,7 +15,7 @@ export const Footer: React.FC = () => {
   ];
 
   return (
-    <div className="footer absolute bottom-0 w-full md:py-16 py-10 bg-custom-dark">
+    <div className="footer absolute bottom-0 w-full md:py-16 py-10 bg-darks-primary">
       <Container>
         <SocialIcons />
         <NavMenu

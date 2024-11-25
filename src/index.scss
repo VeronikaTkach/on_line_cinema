@@ -99,14 +99,14 @@
     @apply p-0;
   }
   body {
-    @apply m-0 p-0 w-screen h-screen font-qanelas bg-dark text-white;
+    @apply m-0 p-0 w-screen h-screen font-qanelas bg-darks-obsidian text-white;
   }
 
   // ---violet button---
 
   // Default styles for button no sizes
   .btn-default-electric {
-    @apply rounded-[5px] text-xs bg-electric-violet  text-white;
+    @apply rounded-[5px] text-xs bg-blues-cobalt  text-white;
 
     &:hover {
       @apply scale-105;
@@ -121,7 +121,7 @@
     }
 
     &:disabled {
-      @apply opacity-50 cursor-not-allowed bg-electric-violet transform-none filter-none;
+      @apply opacity-50 cursor-not-allowed bg-blues-cobalt transform-none filter-none;
     }
   }
 
@@ -142,7 +142,7 @@
     @apply rounded-[10px] text-xs font-semibold bg-transparent border-2 border-white text-white;
 
     &:hover {
-      @apply bg-white text-custom-dark transition-all duration-300 ease-in-out;
+      @apply bg-white text-darks-primary transition-all duration-300 ease-in-out;
     }
 
     &:active {
@@ -165,10 +165,10 @@
 
   // ---white button---
   .btn-default-white {
-    @apply rounded-[10px] text-sm font-semibold bg-white  text-electric-violet;
+    @apply rounded-[10px] text-sm font-semibold bg-white  text-blues-cobalt;
 
     &:hover {
-      @apply bg-white text-custom-dark transition-all duration-300 ease-in-out;
+      @apply bg-white text-darks-primary transition-all duration-300 ease-in-out;
     }
 
     &:active {
@@ -192,14 +192,14 @@
 
   // Default styles for button no sizes
   .btn-default-yellow {
-    @apply rounded-[10px] text-xs font-semibold bg-yellow-bright  text-custom-dark;
+    @apply rounded-[10px] text-xs font-semibold bg-yellows-lime  text-darks-primary;
 
     &:hover {
       @apply bg-white transition-all duration-300 ease-in-out;
     }
 
     &:active {
-      @apply scale-95  bg-yellow-bright;
+      @apply scale-95  bg-;
     }
 
     &:focus-visible {
