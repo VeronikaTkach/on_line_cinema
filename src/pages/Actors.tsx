@@ -1,8 +1,4 @@
-import { useSelector } from "react-redux";
-import {User} from "./../types/types"
-import { RootState } from "../Redux/store";
-
-const Actors: React.FC = () => {
+const Actors = () => {
   return (
     <div>Actors</div>
   )
