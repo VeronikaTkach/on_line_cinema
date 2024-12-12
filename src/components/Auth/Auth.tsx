@@ -4,6 +4,14 @@ import { DialogContentProps } from "@radix-ui/react-dialog";
 import { Link } from "react-router-dom";
 import RegisterModal from "./RegisterModal";
 
+//  стили нужно перевести на Tailwind CSS и реализовать внешнее сответствие модальных окон макету
+//   + адаптировать под разные экраны
+//  для кнопоквоспользоваться готовыми стилями (где-то надо будет дополнительно пробросить стиль размеров кнопки)
+//  реализовать все состояния кнопок соц. сетей, закрытия модального окна и инпутов
+{
+  /* MK: у нас есть готовы компонет для модальных окон, поэтому <Dialog></Dialog> и заменить уже на имеющеся решение */
+}
+
 const overlayStyles = {
   backgroundColor: "rgba(0, 0, 0, 0.7)",
   position: "fixed" as const,
