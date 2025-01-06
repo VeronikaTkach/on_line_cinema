@@ -1,5 +1,6 @@
 import { Link, NavLink } from "react-router-dom";
 import { AuthModal } from "../Auth/Auth";
+import { SearchButton } from "../SearchButton/SearchButton";
 
 export const Header: React.FC = () => {
   return (
@@ -30,6 +31,7 @@ export const Header: React.FC = () => {
           <NavLink to="/selections">Подборки</NavLink>
           <NavLink to="/categories">Категории</NavLink>
         </nav>
+        <SearchButton />
         <AuthModal />
       </div>
     </header>
