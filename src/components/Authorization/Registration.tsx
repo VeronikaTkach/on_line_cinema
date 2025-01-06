@@ -46,6 +46,7 @@ const Registration: React.FC<RegisterModalProps> = ({
     const phoneRegex =
       /^(?:\+?\d{1,3})?[ ]?\(?\d{1,4}\)?[ ]?\d{1,4}[ ]?\d{1,4}[ ]?\d{1,4}$/;
 
+    // TODO: для валидации лучше использовать  useReducer где выноситься состояние в отдельный файл, что избавляет от создания множества состояний с использованием хука useState в файле Login.tsx. Либо использовать zod + react-hook-form, последний вариант чаще используется
     if (!phone.trim()) {
       newErrors.push("Поле 'телефон' обязательно для заполнения.");
     } else if (!phoneRegex.test(phone)) {
@@ -87,11 +88,12 @@ const Registration: React.FC<RegisterModalProps> = ({
       setPrivacyChecked(false);
       setDataProcessingChecked(false);
       onClose();
-      alert("Вы успешно зарегистрированы!")
+      alert("Вы успешно зарегистрированы!");
     }
   };
 
   return (
+    // TODO: тоже самое, что и в Login.tsx: нужно переиспользовать уже существующий компонент модального окна и не дублировать код.
     <Dialog.Root open={isOpen} onOpenChange={onClose}>
       <Dialog.Portal>
         <Dialog.Overlay className={overlayStyles} />

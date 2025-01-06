@@ -6,11 +6,13 @@ import SocialIconsLogin from "./SocialIconsLogin";
 import CloseButton from "./CloseButton";
 
 const inputStyles = `mb-3.5 w-[52%] h-16 bg-grays-input rounded-lg font-qanelas lg:text-[100%] md:text-[75%] sm:text-[30%] text-base pl-6 text-white text-opacity-60 border:none`;
+// TODO: Нужно использовать готовые стили для кнопок
 const buttonStyles = `mb-3.5 w-[52%] h-16 max-w-[600px] bg-grays-input rounded-lg font-qanelas lg:text-[100%] md:text-[75%] sm:text-[30%] text-base text-white border-none hover:bg-yellows-lime hover:text-darks-primary transition-colors duration-300 ease-in-out`;
 const overlayStyles = `bg-black/30 fixed inset-0 backdrop-blur-[2px]`;
 const contentStyles = `bg-darks-shadow-blue w-[42.45vw] h-auto  rounded-lg fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2`;
 const titleStyles = `mb-9 font-qanelas font-extrabold text-4xl`;
 const wrapperStyles = `flex flex-col items-center justify-start w-full h-full`;
+
 export const Login: React.FC = () => {
   const [isAuthOpen, setAuthOpen] = useState(false);
   const [isRegisterOpen, setRegisterOpen] = useState(false);
@@ -107,10 +109,14 @@ export const Login: React.FC = () => {
 
   return (
     <>
+      {/* TODO: это файл компонента формы Логина, тут не должно быть кнопки, которая
+      находиться в хедере. то есть эта кнопка не относиться к форме входа и регистраци, хначит ее тут не должно быть */}
       <button style={{ marginLeft: "auto" }} onClick={() => setAuthOpen(true)}>
         Войти
       </button>
 
+      {/* TODO: Здесь не должно быть ккомпонента Портала, он вынесен в отдельный компонент Modal.tsx, нужно его использовать, но не дублировать здесь. 
+      // Посмотреть пример использования можно в файле PrivacyPolicy.tsx */}
       <Dialog.Root open={isAuthOpen} onOpenChange={setAuthOpen}>
         <Dialog.Trigger asChild />
         <Dialog.Portal>
@@ -174,7 +180,6 @@ export const Login: React.FC = () => {
           </Dialog.Content>
         </Dialog.Portal>
       </Dialog.Root>
-
       <Registration
         isOpen={isRegisterOpen}
         onClose={() => setRegisterOpen(false)}
