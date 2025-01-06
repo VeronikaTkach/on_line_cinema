@@ -1,23 +1,35 @@
 import { Link, NavLink } from "react-router-dom";
 import { AuthModal } from "../Auth/Auth";
+import LOGO from './../../assets/images/logoicon.svg';
+import FACEBOOK_ICON from './../../assets/images/facebook.svg';
+import TWITTER_ICON from './../../assets/images/twitter.svg';
+import INSTAGRAM_ICON from './../../assets/images/instagram.svg';
+import VK_ICON from './../../assets/images/vk.svg';
 
 export const Header: React.FC = () => {
   return (
     <header>
       <div
-        className="container"
-        style={{ display: "flex", justifyContent: "space-between" }}
+        className="flex items-center justify-between py-6 gap-20 px-16"
       >
-        <Link to="/afisha" style={{ marginRight: "2rem" }}>
-          ЛОГО
-        </Link>
+        <div className="flex-column">
+          <Link to="/afisha" className="flex pb-2 gap-2">
+            <img src={LOGO}/>
+            <span className="text-xl">
+              <span className="text-blue-600">Kino</span>area
+            </span>
+            
+          </Link>
+          <div className="flex gap-2 items-center justify-between">
+            <img src={VK_ICON} className="w-4 cursor-pointer"/>
+            <img src={INSTAGRAM_ICON}  className="w-4 cursor-pointer"/>
+            <img src={FACEBOOK_ICON}  className="w-4 cursor-pointer"/>
+            <img src={TWITTER_ICON}  className="w-4 cursor-pointer"/>
+          </div>
+        </div>
+        
         <nav
-          className="bg-dark-gray-white"
-          style={{
-            display: "flex",
-            justifyContent: "space-around",
-            flexGrow: 1,
-          }}
+           className="flex justify-between gap-5"
         >
           <NavLink to="/afisha">Афиша</NavLink>
           <NavLink to="/media">Медиа</NavLink>

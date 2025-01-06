@@ -72,7 +72,7 @@ export const AuthModal: React.FC = () => {
       <Dialog.Root open={isAuthOpen} onOpenChange={setAuthOpen}>
         <Dialog.Trigger asChild>
           <button
-            style={{ marginLeft: "auto" }}
+            // style={{ marginLeft: "auto" }}
             onClick={() => setAuthOpen(true)}
           >
             Войти
