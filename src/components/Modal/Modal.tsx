@@ -21,14 +21,14 @@ export const Modal: React.FC<IModalProps> = ({
         <Dialog.Portal>
           <Dialog.Overlay
             className={
-              noColor ? `fixed inset-0` : "fixed inset-0 bg-black opacity-30"
+              noColor ? `fixed inset-0` : "fixed inset-0 bg-black opacity-70"
             }
           />
           <Dialog.Content
             className={
               noColor
                 ? "fixed inset-0 flex items-center justify-center"
-                : "fixed inset-0 flex items-center backdrop-blur-[2px] justify-center"
+                : "fixed inset-0 flex items-center backdrop-blur-[5px] justify-center"
             }
             onClick={() => onOpenChange(false)}
           >
