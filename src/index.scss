@@ -3,24 +3,229 @@
 @tailwind utilities;
 
 @layer base {
-  // @font-face {
-  //   font-family: 'Gerbera';
-  //   font-style: normal;
-  //   font-weight: 400;
-  //   font-display: swap;
-  //   src: url(./assets/fonts/Gerbera.woff) format('woff');
-  // }
+  @font-face {
+    font-family: "Qanelas";
+    src: url(./assets/fonts/QanelasLight.otf) format("opentype");
+    font-weight: 300;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: "Qanelas";
+    src: url(./assets/fonts/QanelasLightItalic.otf) format("opentype");
+    font-weight: 300;
+    font-style: italic;
+  }
+
+  @font-face {
+    font-family: "Qanelas";
+    src: url(./assets/fonts/QanelasRegular.otf) format("opentype");
+    font-weight: normal;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: "Qanelas";
+    src: url(./assets/fonts/QanelasRegularItalic.otf) format("opentype");
+    font-weight: normal;
+    font-style: italic;
+  }
+
+  @font-face {
+    font-family: "Qanelas";
+    src: url(./assets/fonts/QanelasMedium.otf) format("opentype");
+    font-weight: 500;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: "Qanelas";
+    src: url(./assets/fonts/QanelasMediumItalic.otf) format("opentype");
+    font-weight: 500;
+    font-style: italic;
+  }
+
+  @font-face {
+    font-family: "Qanelas";
+    src: url(./assets/fonts/QanelasSemiBold.otf) format("opentype");
+    font-weight: 600;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: "Qanelas";
+    src: url(./assets/fonts/QanelasSemiBoldItalic.otf) format("opentype");
+    font-weight: 600;
+    font-style: italic;
+  }
+
+  @font-face {
+    font-family: "Qanelas";
+    src: url(./assets/fonts/QanelasBold.otf) format("opentype");
+    font-weight: 700;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: "Qanelas";
+    src: url(./assets/fonts/QanelasBoldItalic.otf) format("opentype");
+    font-weight: 700;
+    font-style: italic;
+  }
+  @font-face {
+    font-family: "Qanelas";
+    src: url(./assets/fonts/QanelasExtraBold.otf) format("opentype");
+    font-weight: 800;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: "Qanelas";
+    src: url(./assets/fonts/QanelasExtraBoldItalic.otf) format("opentype");
+    font-weight: 800;
+    font-style: italic;
+  }
+
+  @font-face {
+    font-family: "Qanelas";
+    src: url(./assets/fonts/QanelasHeavy.otf) format("opentype");
+    font-weight: 900;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: "Qanelas";
+    src: url(./assets/fonts/QanelasHeavyItalic.otf) format("opentype");
+    font-weight: 900;
+    font-style: italic;
+  }
 }
 
 @layer components {
   #root {
-    @apply p-0 bg-white;
+    @apply p-0;
   }
   body {
-    @apply m-0 p-0 bg-white w-screen h-screen;
+    @apply m-0 p-0 w-screen h-screen font-qanelas bg-darks-obsidian text-white;
   }
 
-  // .btn-B-GreenDefault {
-  //   @apply w-[328px] h-12 rounded-[40px] font-gerbera-h3  bg-light-brand-green text-light-gray-white;
-  // }
+  // ---violet button---
+
+  // Default styles for button no sizes
+  .btn-default-electric {
+    @apply rounded-[5px] text-xs bg-blues-cobalt  text-white;
+
+    &:hover {
+      @apply scale-105;
+    }
+
+    &:active {
+      @apply scale-95 filter brightness-75;
+    }
+
+    &:focus-visible {
+      @apply outline-none ring-2 ring-offset-transparent ring-blue-400 ring-offset-2;
+    }
+
+    &:disabled {
+      @apply opacity-50 cursor-not-allowed bg-blues-cobalt transform-none filter-none;
+    }
+  }
+
+  // with sizes adapted to different screens
+  .btn-adaptive-electric {
+    @apply btn-default-electric lg:rounded-[10px] xl:py-4 xl:px-12 lg:py-3 lg:px-8 md:py-2.5 md:px-7 py-1.5 px-4 xl:text-base md:text-sm;
+  }
+
+  // button with glow
+  .btn-default-electric-with-glow {
+    @apply btn-adaptive-electric shadow-[0_0_15px_0_rgba(72,113,255,0.8)];
+  }
+
+  // ----- transparent button with white counter -----
+
+  // Default styles for button no sizes
+  .btn-default-white-counter {
+    @apply rounded-[10px] text-xs font-semibold bg-transparent border-2 border-white text-white;
+
+    &:hover {
+      @apply bg-white text-darks-primary transition-all duration-300 ease-in-out;
+    }
+
+    &:active {
+      @apply scale-95 filter;
+    }
+
+    &:focus-visible {
+      @apply border-none outline-none ring-2 ring-offset-transparent ring-blue-400 ring-offset-2;
+    }
+
+    &:disabled {
+      @apply opacity-50 cursor-not-allowed bg-slate-400 text-white transform-none filter-none;
+    }
+  }
+
+  // with sizes adapted to different screens
+  .btn-adaptive-white-counter {
+    @apply btn-default-white-counter xl:py-5 xl:px-12 py-4 px-11 xl:text-base md:text-base;
+  }
+
+  // ---white button---
+  .btn-default-white {
+    @apply rounded-[10px] text-sm font-semibold bg-white  text-blues-cobalt;
+
+    &:hover {
+      @apply bg-white text-darks-primary transition-all duration-300 ease-in-out;
+    }
+
+    &:active {
+      @apply scale-95 filter;
+    }
+
+    &:focus-visible {
+      @apply border-none outline-none ring-2 ring-offset-transparent ring-blue-400 ring-offset-2;
+    }
+
+    &:disabled {
+      @apply opacity-50 cursor-not-allowed bg-slate-400 text-white transform-none filter-none;
+    }
+  }
+  // with sizes adapted to different screens
+  .btn-adaptive-white {
+    @apply btn-default-white xl:px-10 xl:py-5 xl:text-lg md:py-3.5 py-2.5 px-7;
+  }
+
+  // --- yellow button ---
+
+  // Default styles for button no sizes
+  .btn-default-yellow {
+    @apply rounded-[10px] text-xs font-semibold bg-yellows-lime  text-darks-primary;
+
+    &:hover {
+      @apply bg-yellows-butter transition-all duration-300 ease-in-out;
+    }
+
+    &:active {
+      @apply scale-95  bg-yellows-butter;
+    }
+
+    &:focus-visible {
+      @apply border-none outline-none ring-2 ring-offset-transparent ring-blue-400 ring-offset-2;
+    }
+
+    &:disabled {
+      @apply opacity-50 cursor-not-allowed bg-slate-400 text-white transform-none filter-none;
+    }
+  }
+  //
+  // ------------ INPUT ---------
+
+  .input-default-white {
+    @apply rounded-[10px] text-darks-primary placeholder:text-darks-primary placeholder:text-opacity-40 placeholder:font-normal lg:placeholder:text-base font-medium;
+
+    &:focus-visible {
+      @apply border-none outline-none;
+    }
+  }
+
+  // ---------- Form -------------
+  .wrapper-search-form {
+    @apply fixed top-0 left-0 right-0 bottom-0 flex justify-center items-center;
+  }
+  .form-default-white {
+    @apply rounded-[10px] bg-white xl:h-[76px] h-[56px] lg:pr-2.5 md:pr-2 pr-1;
+  }
 }
