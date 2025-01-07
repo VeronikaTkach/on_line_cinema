@@ -214,7 +214,7 @@
   // ------------ INPUT ---------
 
   .input-default-white {
-    @apply rounded-[10px] text-darks-primary placeholder:text-darks-primary placeholder:text-opacity-40 placeholder:font-normal placeholder:text-base font-medium text-lg py-5 px-8;
+    @apply rounded-[10px] text-darks-primary placeholder:text-darks-primary placeholder:text-opacity-40 placeholder:font-normal lg:placeholder:text-base font-medium;
 
     &:focus-visible {
       @apply border-none outline-none;
@@ -226,6 +226,6 @@
     @apply fixed top-0 left-0 right-0 bottom-0 flex justify-center items-center;
   }
   .form-default-white {
-    @apply rounded-[10px] bg-white h-[76px] pr-2.5;
+    @apply rounded-[10px] bg-white xl:h-[76px] h-[56px] lg:pr-2.5 md:pr-2 pr-1;
   }
 }

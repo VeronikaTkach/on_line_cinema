@@ -21,7 +21,7 @@ export const Header: React.FC = () => {
   return (
     <header>
       <Container className="flex space-between">
-        <Link to="/afisha" style={{ marginRight: "2rem" }}>
+        <Link to="/" style={{ marginRight: "2rem" }}>
           ЛОГО
         </Link>
 

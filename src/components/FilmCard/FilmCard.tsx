@@ -1,3 +1,4 @@
+import { Rating } from "../Rating/Rating";
 import { FilmType } from "./filmTypes";
 
 type FilmProp = {
@@ -20,9 +21,7 @@ const FilmCard = ({ film }: FilmProp) => {
           <button className="btn-adaptive-white">Карточка фильма</button>
         </div>
       </div>
-      <div className="absolute top-3 lg:text-[18px] right-3 bg-[#4BCB36] text-[12px] py-1 px-3 rounded-md z-20">
-        {rating}
-      </div>
+      <Rating className="absolute top-3" rating={Number(rating)} />
 
       <h4 className=" text-left text-[18px] font-[700]">{title}</h4>
 

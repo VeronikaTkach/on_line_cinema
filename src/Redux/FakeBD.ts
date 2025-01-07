@@ -1,4 +1,34 @@
-export const fakeDatabase = {
+export type MovieType = {
+  id: string;
+  title: string;
+  rating: string;
+  genre: string[];
+  image: string;
+};
+
+export type PersonType = {
+  id: string;
+  name: string;
+  englishName: string;
+  career: string[];
+  height: string;
+  birthDate: string;
+  zodiac: string;
+  age: number;
+  birthPlace: string;
+  genres: string[];
+  moviesCount: number;
+  yearsActive: string;
+  awards: string[];
+  image: string;
+};
+
+export type FakeDatabaseType = {
+  movies: MovieType[];
+  persons: PersonType[];
+};
+
+export const fakeDatabase: FakeDatabaseType = {
   movies: [
     {
       id: "1",
@@ -96,6 +126,8 @@ export const fakeDatabase = {
       moviesCount: 70,
       yearsActive: "1985 — настоящее время",
       awards: ["Золотой глобус", "Сатурн"],
+      image:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbX9g1bV-4bqeWTJ7KFb2Sh0IQqWMoaexLXA&s",
     },
     {
       id: "2",
@@ -111,6 +143,8 @@ export const fakeDatabase = {
       moviesCount: 216,
       yearsActive: "1984 — 2021",
       awards: [],
+      image:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNk9fBNEphQSlstCAykySUmB1Lqmecn0G2AA&s",
     },
     {
       id: "3",
@@ -126,6 +160,8 @@ export const fakeDatabase = {
       moviesCount: 129,
       yearsActive: "1977 — настоящее время",
       awards: ["Оскар", "Золотой глобус"],
+      image:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxLLbH2WuCTWu_sqgHr7BLqEDAZQFMW8uA3g&s",
     },
     {
       id: "4",
@@ -141,6 +177,8 @@ export const fakeDatabase = {
       moviesCount: 102,
       yearsActive: "1984 — настоящее время",
       awards: ["Золотой глобус", "Сатурн"],
+      image:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSVjMssJMEdJ_cgcP6af-I5jDKOQEOcgCc2Bg&s",
     },
     {
       id: "5",
@@ -156,6 +194,8 @@ export const fakeDatabase = {
       moviesCount: 40,
       yearsActive: "2004 — настоящее время",
       awards: ["Оскар", "Золотой глобус"],
+      image:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6xEmYRmABpBDUNxIFXLok0It70XWU0KJ58Q&s",
     },
     {
       id: "6",
@@ -171,6 +211,8 @@ export const fakeDatabase = {
       moviesCount: 95,
       yearsActive: "1978 — настоящее время",
       awards: ["Оскар", "Золотой глобус"],
+      image:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCheC8noyyHoN2rGqM5cpPu4A2EgCdJodWVA&s",
     },
     {
       id: "7",
@@ -186,6 +228,8 @@ export const fakeDatabase = {
       moviesCount: 70,
       yearsActive: "1993 — настоящее время",
       awards: ["Оскар", "Золотой глобус"],
+      image:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTx9HpegOEXtfW4Z6MRPY7a92qSrx0gX2iczA&s",
     },
     {
       id: "8",
@@ -201,6 +245,8 @@ export const fakeDatabase = {
       moviesCount: 70,
       yearsActive: "1986 — настоящее время",
       awards: ["Оскар", "Золотой глобус"],
+      image:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQZfoB7u20dREsRxPn_q7nA31nsqkn0bLHjQ&s",
     },
     {
       id: "9",
@@ -216,6 +262,8 @@ export const fakeDatabase = {
       moviesCount: 50,
       yearsActive: "1992 — настоящее время",
       awards: ["Оскар", "Золотой глобус"],
+      image:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2T2VqvqsmNi-4TcifhE_P161Ka7wWsojz2Q&s",
     },
     {
       id: "10",
@@ -231,6 +279,8 @@ export const fakeDatabase = {
       moviesCount: 58,
       yearsActive: "1994 — настоящее время",
       awards: ["Золотой глобус", "Сатурн"],
+      image:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJ7OHAjhJN7dOQsw7oXB9M_OL2LEOZ_SCx4w&s",
     },
     {
       id: "11",
@@ -246,6 +296,8 @@ export const fakeDatabase = {
       moviesCount: 69,
       yearsActive: "1988 — настоящее время",
       awards: ["Оскар", "Золотой глобус"],
+      image:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbXKRwBkqADyt6xJ8a21nLjs-N4VsWeoqYpQ&s",
     },
     {
       id: "12",
@@ -261,6 +313,8 @@ export const fakeDatabase = {
       moviesCount: 60,
       yearsActive: "1994 — настоящее время",
       awards: ["Золотой глобус", "Сатурн"],
+      image:
+        "https://www.film.ru/sites/default/files/people/1455531-2783777.jpg",
     },
     {
       id: "13",
@@ -276,6 +330,8 @@ export const fakeDatabase = {
       moviesCount: 26,
       yearsActive: "2004 — настоящее время",
       awards: ["Сатурн"],
+      image:
+        "https://upload.wikimedia.org/wikipedia/commons/5/5b/Gal_Gadot_cropped_lighting_corrected_2b.jpg",
     },
     {
       id: "14",
@@ -291,21 +347,8 @@ export const fakeDatabase = {
       moviesCount: 79,
       yearsActive: "1970 — настоящее время",
       awards: ["Оскар", "Золотой глобус"],
-    },
-    {
-      id: "15",
-      name: "Киану Ривз",
-      englishName: "Keanu Reeves",
-      career: ["Актер", "Продюсер"],
-      height: "1.86 м",
-      birthDate: "2 сентября 1964",
-      zodiac: "Дева",
-      age: 56,
-      birthPlace: "Бейрует, Ливан",
-      genres: ["Драма", "Экшн", "Фэнтези"],
-      moviesCount: 70,
-      yearsActive: "1985 — настоящее время",
-      awards: ["Золотой глобус", "Сатурн"],
+      image:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRh-m7T4qByVPlpgRqtFLDKzk3mYecDuQtliw&s",
     },
   ],
 };
