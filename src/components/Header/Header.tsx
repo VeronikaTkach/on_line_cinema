@@ -1,8 +1,22 @@
 import { Link, NavLink } from "react-router-dom";
-import { SearchButton } from "../SearchButton/SearchButton";
 import { Login } from "../Authorization/Login";
+import { SearchButton } from "../SearchButton/SearchButton";
+import { Modal } from "../Modal/Modal";
+import { SearchForm } from "../SearchForm/SearchForm";
+import { useState } from "react";
 
 export const Header: React.FC = () => {
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+
+  const handleClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setIsPopupOpen(true);
+  };
+
+  const toggleOpenPopUp = () => {
+    setIsPopupOpen(!isPopupOpen);
+  };
+
   return (
     <header>
       {/* MK: нужно поместить всю врестку внтури тега хедер в компонент Container, который уже адптирован под все экраны*/}
@@ -31,7 +45,10 @@ export const Header: React.FC = () => {
           <NavLink to="/selections">Подборки</NavLink>
           <NavLink to="/categories">Категории</NavLink>
         </nav>
-        <SearchButton />
+        <SearchButton onClick={handleClick} />
+        <Modal isOpen={isPopupOpen} onOpenChange={toggleOpenPopUp}>
+          <SearchForm onOpenChange={toggleOpenPopUp} />
+        </Modal>
         <Login />
       </div>
     </header>
