@@ -12,7 +12,10 @@ export const SearchForm = ({ onOpenChange }: { onOpenChange: () => void }) => {
   };
 
   return (
-    <div className="" onClick={(e) => e.stopPropagation()}>
+    <div
+      className="flex items-center gap-8"
+      onClick={(e) => e.stopPropagation()}
+    >
       <form action="#" className={clForm} onChange={handleSubmit}>
         <Input
           placeholder="Что будем искать?"
@@ -27,6 +30,9 @@ export const SearchForm = ({ onOpenChange }: { onOpenChange: () => void }) => {
         </Link>
         <SearchButton plusStyle="btn-default-yellow" svgStyle="brightness-0" />
       </form>
+      <button className="max-w-5" onClick={onOpenChange}>
+        <img src="./src/assets/images/close.svg" alt="close icon" />
+      </button>
     </div>
   );
 };
