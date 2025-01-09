@@ -76,34 +76,6 @@ export const Login: React.FC = () => {
     }
   };
 
-  //   e.preventDefault();
-
-  //   const loginRegex = /^[a-zA-Z0-9_]{3,}$/;
-  //   const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-  //   const phoneRegex = /^(\+?\d{1,3})?(\d{10})$/;
-  //   const passwordRegex = /^[a-zA-Z0-9]{6,}$/;
-
-  //   if (!email || !password) {
-  //     setErrorMessage("Заполните все поля.");
-  //     return;
-  //   }
-  //   if (
-  //     !emailRegex.test(email) &&
-  //     !loginRegex.test(email) &&
-  //     !phoneRegex.test(email)
-  //   ) {
-  //     setErrorMessage("Некорректный формат логина");
-  //     return;
-  //   }
-  //   if (!passwordRegex.test(password)) {
-  //     setErrorMessage("Некорректный формат пароля");
-  //     return;
-  //   }
-  //   setErrorMessage("");
-  //   setAuthOpen(false);
-  //   setEmail("");
-  //   setPassword("");
-  // };
 
   return (
     <>
@@ -144,7 +116,9 @@ export const Login: React.FC = () => {
                 {errorMessage && (
                   <div className="text-red-500 mb-4">{errorMessage}</div>
                 )}
-                <button type="submit" className={buttonStyles}>
+                <button type="submit" 
+                className={buttonStyles}>
+               
                   Войти
                 </button>
                 <button
