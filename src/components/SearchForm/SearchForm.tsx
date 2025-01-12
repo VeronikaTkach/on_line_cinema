@@ -43,8 +43,8 @@ export const SearchForm = ({ onOpenChange }: { onOpenChange: () => void }) => {
             svgStyle="brightness-0"
           />
         </form>
-        <div className="overflow-scroll max-h-[70svh] w-full">
-          {/* <PersonListModal persons={persons} /> */}
+        <div className="overflow-scroll max-h-[70svh] w-full scrollbar-thin scrollbar-thumb-black-500 scrollbar-track-black-300">
+          <PersonListModal persons={persons} />
           <MoviesListModal films={films} />
         </div>
       </div>
