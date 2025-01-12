@@ -6,9 +6,12 @@ import TWITTER_ICON from './../../assets/images/twitter.svg';
 import INSTAGRAM_ICON from './../../assets/images/instagram.svg';
 import VK_ICON from './../../assets/images/vk.svg';
 import SEARCH from './../../assets/images/search.svg'
+import { Login } from '../Authorization/Login';
+
 export const Header: React.FC = () => {
   return (
     <header>
+      {/* MK: нужно поместить всю врестку внтури тега хедер в компонент Container, который уже адптирован под все экраны*/}
       <div
         className="w-full flex justify-between  py-6 p-4 md:px-8 lg:px-12 xl:px-16"
       >
