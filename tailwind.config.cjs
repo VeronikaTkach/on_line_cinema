@@ -68,7 +68,7 @@ module.exports = {
           storm: "#505772",
           iron: "#4F5B7C",
           midnight: "#495473",
-          input:"#1E2538",
+          input: "#1E2538",
         },
         blues: {
           cobalt: "#3657CB",
@@ -128,9 +128,9 @@ module.exports = {
           },
         },
       };
-
       addUtilities(responsiveUtilities, ["responsive"]);
     },
+    require("tailwind-scrollbar"),
   ],
 };
 
