@@ -111,7 +111,7 @@ export const Login: React.FC = () => {
     <>
       {/* TODO: это файл компонента формы Логина, тут не должно быть кнопки, которая
       находиться в хедере. то есть эта кнопка не относиться к форме входа и регистраци, хначит ее тут не должно быть */}
-      <button style={{ marginLeft: "auto" }} onClick={() => setAuthOpen(true)}>
+      <button className="btn-adaptive-electric sm:h-8 md:h-full" onClick={() => setAuthOpen(true)}>
         Войти
       </button>
 
