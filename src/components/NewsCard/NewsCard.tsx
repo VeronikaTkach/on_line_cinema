@@ -10,7 +10,7 @@ type NewsProp = {
 const NewsCard = ({news}: NewsProp) => {
   const {title, description, date, views, comments, image} = news
   return(
-  <div style={{backgroundImage: `url(${img})`}} className="flex rounded-md flex-col mx-auto h-[500px] w-[60%] xl:w-[85%]">
+  <div style={{backgroundImage: `url(${img})`}} className="bg-cover flex rounded-md flex-col mx-auto h-[500px] w-[60%] xl:w-[85%]">
     <div className="flex ml-[24px] mt-[26px]">
       <p className="text-left font-[700] text-[15px]">{date}</p>
       <div className=" items-center flex ml-[10px]">
