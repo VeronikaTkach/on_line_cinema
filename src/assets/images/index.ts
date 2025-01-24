@@ -1,0 +1,6 @@
+export {default as facebook} from './facebook.svg'
+export {default as twitter} from './twitter.svg'
+export {default as vk} from './vk.svg'
+export {default as instagram} from './instagram.svg'
+export {default as logo} from './logo.svg'
+export {default as menu_icon} from './menuIcon.svg'
