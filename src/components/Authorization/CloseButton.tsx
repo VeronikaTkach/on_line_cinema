@@ -3,7 +3,7 @@ interface CloseButtonProps {
   onClick: () => void;
 }
 
-const CloseButton: React.FC<CloseButtonProps> = ({ className, onClick }) => {
+export const CloseButton: React.FC<CloseButtonProps> = ({ className, onClick }) => {
   return (
     <button className={className} onClick={onClick}>
       <svg
@@ -24,4 +24,4 @@ const CloseButton: React.FC<CloseButtonProps> = ({ className, onClick }) => {
     </button>
   );
 };
-export default CloseButton;
+
