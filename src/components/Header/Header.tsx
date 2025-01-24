@@ -10,11 +10,11 @@ import { Login } from "../Authorization/Login";
 import { Button } from "../Button/Button";
 
 import {facebook, twitter, vk, instagram, logo, menu_icon} from './../../assets/images/index'
-
-const linkStyles = 'font-semibold cursor-pointer transition-all duration-300 ease-in-out hover:underline hover:underline-offset-4 active:text-[rgb(192,191,191)] xl:text-lg lg:text-md md:text-md text-white'
-const navStyle = 'grow sm:hidden md:flex md:justify-between md:pt-6 lg:pt-0 lg:justify-around xl:px-6 w-full px-4'
+import styles from './../../assets/styles/defaultStyles.module.scss';
+import { createUseStyles } from "react-jss";
 
 export const Header: React.FC = () => {
+  const classes = useStyles();
   // Вынести в редакс
   const data = [
     {
@@ -53,22 +53,23 @@ export const Header: React.FC = () => {
 
   return (
     <header>
-      <Container className="flex xl:py-[23px] lg:py-[21px] py-[11px] md:items-start lg:items-center">
-        <Button text="" img={menu_icon} className="md:hidden btn-default-white py-2.5 px-2.5 h-8"/>
-        <SearchButton onClick={handleClick} plusStyle={"lg:hidden mx-1 sm:h-8 md:h-full"}/>
-        <div className="flex items-center justify-center flex-grow md:flex-col lg:flex-row">
-          <Link to="/" className=" flex-column">
-            <img src={logo} className="md:w-[120px] xl:pb-2.5 lg:pb-2 pb-1.5"/>
-            <div className="flex justify-between w-full">
+      <Container className={classes.container}>
+        {/* Заглушка */}
+        <Button text="" img={menu_icon} className={`${classes.menuButton} btn-default-white`}/>
+        <SearchButton onClick={handleClick} plusStyle={classes.searchSmallButton}/>
+        <div className={classes.navContent}>
+          <Link to="/" className={classes.logo}>
+            <img src={logo} className={classes.logoImg}/>
+            <div className={classes.iconsBlock}>
               {/* Добавить линку по требованию */}
-              {iconsArray.map(item => <img src={item} className="w-4"/>)}
+              {iconsArray.map(item => <img src={item} className={classes.icon}/>)}
             </div>
           </Link>
-          <nav className={navStyle}>
-            {data.map(({name, link}) => <NavLink to={link} className={linkStyles}>{name}</NavLink>)}
+          <nav className={classes.navContainer}>
+            {data.map(({name, link}) => <NavLink to={link} className={styles.text_small_white}>{name}</NavLink>)}
           </nav>
         </div>
-        <SearchButton onClick={handleClick} plusStyle={"hidden lg:block mr-3 h-full"}/>
+        <SearchButton onClick={handleClick} plusStyle={classes.searchButton}/>
         <Modal isOpen={isPopupOpen} onOpenChange={toggleOpenPopUp}>
           <SearchForm onOpenChange={toggleOpenPopUp} />
         </Modal>
@@ -77,3 +78,95 @@ export const Header: React.FC = () => {
     </header>
   );
 };
+const useStyles = createUseStyles({
+  container:{
+    display:"flex",
+    padding: "11px 0",
+    '@media (max-width: 768px)':{
+      
+    },
+    '@media (max-width: 1024px)':{
+      padding: "21px 0",
+      justifyContent: "center"
+    },
+    '@media (min-width: 1025px)':{
+      padding: "23px 0",
+      alignItems: "start",
+    },
+  },
+  logo:{
+    display:"flex",
+    flexDirection:"column"
+  },
+  logoImg:{
+    paddingBottom:"0.375rem",
+    '@media (min-width: 768px)':{
+      width: "120px"
+    },
+    '@media (max-width: 1024px)':{
+      paddingBottom: "0.5rem",
+    },
+    '@media (min-width: 1025px)':{
+      paddingBottom: "0.625rem",
+    },
+  },
+  menuButton:{
+    padding: "10px",
+     height: "32px",
+     '@media (min-width: 768px)':{
+        display: "none",
+    }
+  },
+  iconsBlock:{
+    width: "100%",
+    display: "flex",
+    justifyContent: "space-between"
+  },
+  icon:{
+    width:"1rem"
+  },
+  searchSmallButton:{
+    margin: "0 4px",
+    '@media (min-width: 1024px)':{
+      display: "none"
+    },
+    '@media (max-width: 1024px)':{
+      height: "38px",
+    },
+    '@media (max-width: 768px)':{
+      height: "32px",
+    }
+  },
+  searchButton: {
+    marginRight: "0.75rem",
+    '@media (max-width: 1024px)':{
+      display: "none"
+    }
+  },
+  navContent:{
+    display:"flex",
+    justifyContent:"center",
+    alignItems: "center",
+    flexGrow:1,
+    flexDirection:"column",
+    '@media (min-width: 1024px)':{
+       flexDirection:"row"
+    }
+  },
+  navContainer: {
+    display:"flex",
+    width:"100%",
+    justifyContent: "space-around",
+    flexGrow: 1,
+    '@media (max-width: 768px)':{
+      display: "none"
+    },
+    '@media (max-width: 1024px)':{
+       paddingTop: "12px",
+    },
+    '@media (min-width: 1024px)':{
+       padding: "0 12px",
+    }
+  },
+  
+});

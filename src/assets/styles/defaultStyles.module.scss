@@ -1,0 +1,57 @@
+$white: #FFFFFF;
+$lightGrey: rgba(255, 255, 255, 0.35);
+$yellow: #F2F60F;
+$blue: #3657CB;
+
+@mixin text_small_default($text-color) {
+	color: $text-color;
+	font-size: 18px;
+	font-weight: bold;
+	text-align: center;
+}
+
+@mixin text_medium_default($text-color) {
+	color: $text-color;
+	font-size: 18px;
+	font-weight: bold;
+	text-align: center;
+}
+
+@mixin text_large_default($text-color) {
+	color: $text-color;
+	font-size: 65px;
+	font-weight: bold;
+	text-align: center;
+}
+
+.text_small_white {
+	@include text_small_default($white);
+}
+
+.text_small_light_grey {
+	@include text_small_default($lightGrey);
+}
+
+.text_small_yellow {
+	@include text_small_default($yellow);
+	font-size: 15px;
+	font-weight: normal;
+}
+
+.text_small_blue {
+	@include text_small_default($blue);
+}
+
+@media (min-width: 425px) and (max-width: 768px) {}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+	.text_small_white {
+		font-size: 12px;
+	}
+}
+
+@media (min-width: 1025px) {
+	.text_small_white {
+		font-size: 17px;
+	}
+}
