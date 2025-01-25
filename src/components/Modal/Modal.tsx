@@ -21,7 +21,9 @@ export const Modal: React.FC<IModalProps> = ({
         <Dialog.Portal>
           <Dialog.Overlay
             className={
-              noColor ? `fixed inset-0` : "fixed inset-0 bg-black opacity-70"
+              //ДЕ: тут не нужно ветвление, все модальные окна проекта при оверлее имеют один и тот же стиль
+              // noColor ? `fixed inset-0` : "fixed inset-0 bg-black opacity-70"
+              "bg-black/90 fixed inset-0 backdrop-blur-[5px]"
             }
           />
           <Dialog.Content

@@ -1,4 +1,23 @@
-import React, { useState } from "react";
+import React from "react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+
+const passwordSchema = z
+  .object({
+    newPassword: z
+      .string()
+      .min(6, "Пароль должен содержать не менее 8 символов."),
+    confirmPassword: z
+      .string()
+      .min(6, "Пароль должен содержать не менее 8 символов."),
+  })
+  .refine((data) => data.newPassword === data.confirmPassword, {
+    message: "Пароли не совпадают.",
+    path: ["confirmPassword"],
+  });
+
+type PasswordFormData = z.infer<typeof passwordSchema>;
 
 interface ConfirmProps {
   onSubmit: () => void;
@@ -13,55 +32,51 @@ export const PasswordConfirm: React.FC<ConfirmProps> = ({
   buttonStyles,
   wrapperStyles,
 }) => {
-  const [newPassword, setNewPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [errors, setErrors] = useState<string[]>([]);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<PasswordFormData>({
+    resolver: zodResolver(passwordSchema),
+  });
 
-  const handlePasswordSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    const newErrors: string[] = [];
-
-    if (!newPassword.trim() || newPassword.length < 5) {
-      newErrors.push("Пароль должен содержать не менее 8 символов.");
-    }
-    if (newPassword !== confirmPassword) {
-      newErrors.push("Пароли не совпадают.");
-    }
-
-    if (newErrors.length === 0) {
-      setErrors([]);
-      onSubmit();
-    } else {
-      setErrors(newErrors);
-    }
+  const handlePasswordSubmit = (data: PasswordFormData) => {
+    console.log("Пароль успешно обновлен:", data.newPassword);
+    onSubmit();
   };
 
   return (
-    <form onSubmit={handlePasswordSubmit} className={wrapperStyles}>
+    <form
+      onSubmit={handleSubmit(handlePasswordSubmit)}
+      className={wrapperStyles}
+    >
       <input
+        {...register("newPassword")}
         className={inputStyles}
         type="password"
         placeholder="Придумайте новый пароль"
-        value={newPassword}
-        onChange={(e) => setNewPassword(e.target.value)}
       />
-
+      {errors.newPassword && (
+        <div style={{ color: "red", marginBottom: "8px" }}>
+          {errors.newPassword.message}
+        </div>
+      )}
       <input
+        {...register("confirmPassword")}
         className={inputStyles}
         type="password"
         placeholder="Подтвердите пароль"
-        value={confirmPassword}
-        onChange={(e) => setConfirmPassword(e.target.value)}
       />
-
-      {errors.length > 0 && (
-        <div>
-          {errors.map((error, index) => (
-            <div key={index}>{error}</div>
-          ))}
+      {errors.confirmPassword && (
+        <div style={{ color: "red", marginBottom: "8px" }}>
+          {errors.confirmPassword.message}
         </div>
       )}
-      <button type="submit" className={`${buttonStyles} mb-14`}>
+      <button
+        type="submit"
+        className={`btn-default-yellow ${buttonStyles}`}
+        style={{ marginBottom: "59px" }}
+      >
         Готово!
       </button>
     </form>
