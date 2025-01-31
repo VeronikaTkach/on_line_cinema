@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Button } from "../Button/Button";
 import { createUseStyles } from "react-jss";
 
 interface SmallNewsProps {
@@ -28,7 +29,7 @@ export function SmallNews({ image, date, description, title }: SmallNewsProps) {
           hovered ? classes.buttonVisible : ""
         }`}
       >
-        <button className={classes.button}>Читать новость</button>
+        <Button className={classes.button} text="Читать новость" />
       </div>
     </div>
   );
