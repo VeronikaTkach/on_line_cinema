@@ -155,8 +155,8 @@ const useStyles = createUseStyles({
     cursor: "pointer",
     border: "none",
     "& img": {
-      width: "18px",
-      height: "16px",
+      width: "2em",
+      height: "2em",
       color: "white",
       opacity: 1,
       objectFit: "contain",
