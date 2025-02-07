@@ -2,8 +2,9 @@ import React from "react";
 
 interface ButtonProps {
   className?: string;
-  text: string;
-  img?: string
+  text?: string;
+  img?: string;
+  children?: React.ReactNode;
 }
 
 export const Button: React.FC<ButtonProps> = ({ className, text,img }) => {
