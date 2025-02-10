@@ -29,10 +29,7 @@ export const Trailer: React.FC<MovieProps> = ({
         <img src={image} alt={title} />
         {isHovered && (
           <button className={overlayButton}>
-            <img
-              src={PlayButton}              
-              alt="Play"              
-            />
+            <img src={PlayButton} alt="Play"/>
           </button>
         )}
       </div>
