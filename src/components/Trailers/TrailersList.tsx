@@ -49,7 +49,7 @@ export const TrailersList: React.FC = () => {
           <div style={{ width: scrollWidth, height: "1px" }} />
         </Scrollbar>
         <div ref={contentRef} className={classes.content}>
-          {fakeDatabase.movies.map((movie) => (
+          {fakeDatabase?.movies?.map((movie) => (
             <div key={movie.id} className={classes.movieCard}>
               <Trailer
                 title={movie.title}

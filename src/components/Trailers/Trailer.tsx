@@ -1,6 +1,6 @@
 import { useState } from "react";
-import PlayButton from "../../assets/images/playBtn.svg"
-
+import { Button } from "../Button/Button";
+import PlayButton from "../../assets/images/playBtn.svg";
 
 interface MovieProps {
   title: string;
@@ -27,11 +27,7 @@ export const Trailer: React.FC<MovieProps> = ({
     >
       <div className={trailerContainer}>
         <img src={image} alt={title} />
-        {isHovered && (
-          <button className={overlayButton}>
-            <img src={PlayButton} alt="Play"/>
-          </button>
-        )}
+        {isHovered && <Button className={overlayButton} img={PlayButton} />}
       </div>
       <h3>{title}</h3>
     </div>
