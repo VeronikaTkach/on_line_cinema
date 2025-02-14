@@ -3,13 +3,21 @@ import { createUseStyles } from "react-jss";
 import { Trailer } from "./Trailer";
 import { fakeDatabase } from "../../Redux/FakeBD";
 import { Scrollbar } from "react-scrollbars-custom";
+import { TrailerSocials } from "./TraillersSocials";
+import { LikeDislike } from "./LikeDislike";
+import { MovieType } from "../../Redux/FakeBD";
+import { Link } from "react-router-dom";
+import RightArrow from "../../assets/images/ArrowRight.svg";
 import Container from "../../layouts/Container/Container";
 
-export const TrailersList: React.FC = () => {
+export const NewTrailers: React.FC = () => {
   const classes = useStyles();
   const contentRef = useRef<HTMLDivElement>(null);
   const scrollbarRef = useRef<any>(null);
   const [scrollWidth, setScrollWidth] = useState(0);
+  const [selectedMovie, setSelectedMovie] = useState<MovieType | null>(
+    fakeDatabase.movies[0]
+  );
 
   useEffect(() => {
     if (contentRef.current) {
@@ -22,9 +30,39 @@ export const TrailersList: React.FC = () => {
       contentRef.current.scrollLeft = values.scrollLeft;
     }
   };
+  const handleOverlayClick = (movie: MovieType) => {
+    setSelectedMovie(movie);
+  };
 
   return (
     <Container>
+      <div className={classes.treilersHead}>
+        <h2>Новые трейлеры</h2>
+        <Link to="/media" className={classes.linkToMedia}>
+          Перейти на другую страницу
+          <img src={RightArrow} alt="Right arrow" />
+        </Link>
+      </div>
+      {selectedMovie && (
+        <Trailer
+          title={selectedMovie.title}
+          image={selectedMovie.image}
+          className={classes.selectedTrailer}
+          overlayButton={classes.selectedOverlayButton}
+          trailerContainer={classes.selectedTrailerContainer}
+          showTitle={false}
+        />
+      )}
+      <div className={classes.selectedInfo}>
+        <h3>{selectedMovie?.title}</h3>
+        <div className={classes.socials}>
+          <TrailerSocials />
+        </div>
+        <div className={classes.likeDislike}>
+          <LikeDislike movieId={selectedMovie?.id ?? null} />
+        </div>
+      </div>
+
       <div className={classes.container}>
         <Scrollbar
           ref={scrollbarRef}
@@ -57,6 +95,8 @@ export const TrailersList: React.FC = () => {
                 className={classes.trailer}
                 overlayButton={classes.overlayButton}
                 trailerContainer={classes.trailerContainer}
+                onClick={() => handleOverlayClick(movie)}
+                showTitle={true}
               />
             </div>
           ))}
@@ -70,7 +110,8 @@ const useStyles = createUseStyles({
   container: {
     position: "relative",
     width: "100%",
-    //
+    marginBottom: "78px",
+    
   },
   content: {
     display: "flex",
@@ -78,7 +119,7 @@ const useStyles = createUseStyles({
     overflowX: "auto",
     maxWidth: "100%",
     scrollbarWidth: "none",
-    //
+   
   },
   scrollbar: {
     width: "100%",
@@ -93,7 +134,7 @@ const useStyles = createUseStyles({
       marginBottom: "23px",
     },
   },
-  //
+
   movieCard: {
     flex: "0 0 calc(50% - 10px)",
     maxWidth: "calc(50% - 10px)",
@@ -101,7 +142,6 @@ const useStyles = createUseStyles({
       flex: "0 0 calc(25.1% - 20px)",
       maxWidth: "calc(25.1% - 20px)",
     },
-    //
   },
   trailer: {
     display: "flex",
@@ -155,8 +195,8 @@ const useStyles = createUseStyles({
     cursor: "pointer",
     border: "none",
     "& img": {
-      width: "2em",
-      height: "2em",
+      width: "18px",
+      height: "16px",
       color: "white",
       opacity: 1,
       objectFit: "contain",
@@ -177,5 +217,126 @@ const useStyles = createUseStyles({
   trailerContainer: {
     position: "relative",
     width: "100%",
+    height: "100%",
+  },
+
+  selectedOverlayButton: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    padding: 0,
+    width: "100%",
+    height: "100%",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#3657CB",
+    opacity: 0.65,
+    transition: "background-color 0.3s ease-in-out",
+    borderRadius: "10px",
+    zIndex: 1,
+    cursor: "pointer",
+    border: "none",
+    "& img": {
+      maxWidth: "5%",
+
+      objectFit: "contain",
+    },
+  },
+
+  selectedTrailerContainer: {
+    position: "relative",
+    width: "100%",
+    height: "auto",
+  },
+
+  selectedTrailer: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "start",
+
+    "& img": {
+      borderRadius: "10px",
+      width: "100%",
+      height: "auto",
+      objectFit: "cover",
+    },
+  },
+  selectedInfo: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "start",
+    margin: "17px 0 24px 0",
+    "& h3": {
+      color: "#ffffff",
+      fontSize: "25px",
+      fontWeight: "900",
+
+      "@media (min-width: 768px)": {
+        fontSize: "30px",
+      },
+      "@media (min-width: 1024px)": {
+        fontSize: "35px",
+      },
+      "@media (min-width: 1920px)": {
+        fontSize: "45px",
+      },
+    },
+    "@media (max-width: 768px)": {
+      display: "grid",
+      gridTemplateColumns: "1fr 1fr",
+      gridTemplateRows: "1fr 1fr",
+      "& h3": {
+        justifySelf: "start",
+      },
+    },
+  },
+  socials: {
+    alignSelf: "center",
+    marginLeft: "34px",
+    "@media (max-width: 768px)": {
+      gridRow: "2",
+      gridColumn: "1",
+      justifySelf: "start",
+      alignSelf: "start",
+      margin: "0",
+    },
+  },
+  likeDislike: {
+    marginLeft: "auto",
+  },
+  treilersHead: {
+    width: "100%",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-between",
+    marginBottom: "79px",
+    "& h2": {
+      fontSize: "32px",
+      fontWeight: "bold",
+    },
+
+    "@media (min-width: 768px)": {
+      flexDirection: "row",
+      "& h2": {
+        fontSize: "40px",
+        fontWeight: "bold",
+      },
+    },
+
+    "@media (min-width: 1920px)": {
+      fontSize: "65px",
+    },
+  },
+  linkToMedia: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: "27px",
+    fontSize: "18px",
+    fontWeight: "700",
+    "@media (min-width: 1920px)": {
+      fontSize: "22px",
+    },
   },
 });
