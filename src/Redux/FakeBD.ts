@@ -3,6 +3,8 @@ export type MovieType = {
   title: string;
   rating: string;
   genre: string[];
+  likes: number;
+  dislikes: number;
   image: string;
 };
 
@@ -35,6 +37,8 @@ export const fakeDatabase: FakeDatabaseType = {
       title: "Побег из Претории",
       rating: "6.70",
       genre: ["триллер"],
+      likes: 222,
+      dislikes:111,
       image:
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSaOoN8kN6jA46g-oDZHf_WExHFvhr869H79Q&s",
     },
@@ -43,6 +47,8 @@ export const fakeDatabase: FakeDatabaseType = {
       title: "Джокер",
       rating: "8.50",
       genre: ["триллер", "драма", "криминал"],
+      likes: 999,
+      dislikes: 88,
       image:
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRy3fSfoZTBCRrcT9_s3Wua9moYhG8VOYOcuA&s",
     },
@@ -51,6 +57,8 @@ export const fakeDatabase: FakeDatabaseType = {
       title: "Начало",
       rating: "8.80",
       genre: ["триллер", "научная фантастика", "драма"],
+      likes: 777,
+      dislikes: 666,
       image:
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSsQXiWIXXiUit3vgzZvjCgIMGGhnNKCvx1w&s",
     },
@@ -59,6 +67,8 @@ export const fakeDatabase: FakeDatabaseType = {
       title: "Матрица",
       rating: "8.70",
       genre: ["научная фантастика", "боевик", "драма"],
+      likes: 555,
+      dislikes: 444,
       image:
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBSCFdhe31YTtfnpIHBbJZqVyPSZUxhwiltQ&s",
     },
@@ -67,6 +77,8 @@ export const fakeDatabase: FakeDatabaseType = {
       title: "Побег из Шоушенка",
       rating: "9.30",
       genre: ["драма", "криминал"],
+      likes: 333,
+      dislikes: 222,
       image:
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXlCqox8TkefRkm6AoUg8yxOwKlLCia8-pTA&s",
     },
@@ -75,6 +87,8 @@ export const fakeDatabase: FakeDatabaseType = {
       title: "Темный рыцарь",
       rating: "9.00",
       genre: ["боевик", "драма", "криминал"],
+      likes: 111,
+      dislikes: 999,
       image:
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRuUzeaYLRfo8o6Gz5vtkRPiVhTsb3MGXbJSg&s",
     },
@@ -83,6 +97,8 @@ export const fakeDatabase: FakeDatabaseType = {
       title: "Интерстеллар",
       rating: "8.60",
       genre: ["научная фантастика", "драма"],
+      likes: 888,
+      dislikes: 777,
       image:
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBUj7vKc1FWtxeuQfSI7ocdS8bzy5eDgoxAA&s",
     },
@@ -91,6 +107,8 @@ export const fakeDatabase: FakeDatabaseType = {
       title: "Бойцовский клуб",
       rating: "8.80",
       genre: ["драма", "криминал"],
+      likes: 666,
+      dislikes: 555,
       image:
         "https://s1.afisha.ru/mediastorage/a6/a0/81e2d43fa763441294fad29fa0a6.jpg",
     },
@@ -99,6 +117,8 @@ export const fakeDatabase: FakeDatabaseType = {
       title: "Рапунцель: Запутанная история",
       rating: "8.20",
       genre: ["приключения", "семейный", "фэнтези"],
+      likes: 444,
+      dislikes: 333,
       image:
         "https://play-lh.googleusercontent.com/lMtuaBGBTlDeRLgBAhYbJzwCCiSyPvwIejWu2w6Nicrg9DXW5etJRRv_Q472Lj_T4xuT",
     },
@@ -107,6 +127,8 @@ export const fakeDatabase: FakeDatabaseType = {
       title: "Джон Уик",
       rating: "7.90",
       genre: ["боевик", "триллер"],
+      likes: 222,
+      dislikes: 111,
       image:
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvB_E8q22HoTwdcog1YAFSQZsV8amHjQDVNA&s",
     },

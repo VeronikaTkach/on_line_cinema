@@ -15,7 +15,7 @@ const mockData = [
 export function MockParent() {
   return (
     <div style={{ display: "flex", gap: "16px" }}>
-      {mockData.map((mockData) => (
+      {mockData?.map((mockData) => (
         <SmallNews
           key={mockData.id}
           image={mockData.image}
