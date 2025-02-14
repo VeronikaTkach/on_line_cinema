@@ -8,16 +8,27 @@ interface MovieProps {
   className?: string;
   overlayButton?: string;
   trailerContainer?: string;
+  showTitle?: boolean;  
+  onClick?: () => void;
 }
 
 export const Trailer: React.FC<MovieProps> = ({
   title,
   image,
-  className,
-  overlayButton,
-  trailerContainer,
+  className='',
+  overlayButton='',
+  trailerContainer='',
+  onClick,
+  showTitle = true
 }) => {
-  const [isHovered, setIsHovered] = useState(false);
+  const [isHovered, setIsHovered] = useState(false); 
+
+  const handleClick = () => {
+    if (onClick) {
+      onClick(); 
+    }
+  };
+
 
   return (
     <div
@@ -27,9 +38,9 @@ export const Trailer: React.FC<MovieProps> = ({
     >
       <div className={trailerContainer}>
         <img src={image} alt={title} />
-        {isHovered && <Button className={overlayButton} img={PlayButton} />}
+        {isHovered && overlayButton && <Button className={overlayButton} img={PlayButton} onClick={handleClick} />}
       </div>
-      <h3>{title}</h3>
+      {showTitle && <h3>{title}</h3>} 
     </div>
   );
 };
