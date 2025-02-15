@@ -1,7 +1,7 @@
 module.exports = [
   {
-    files: ['**/*.{ts,tsx,js,jsx}'],
-    ignores: ['dist', '.eslintrc.cjs'],
+    files: ['**/*.{ts,tsx,js,jsx}'], //какие файлы должны проверяться
+    ignores: ['dist', '.eslintrc.cjs'], //какие файлы не должны проверяться
     languageOptions: {
       ecmaVersion: 'latest',
       sourceType: 'module',
@@ -13,7 +13,7 @@ module.exports = [
     },
     settings: {
       react: {
-        version: 'detect',
+        version: 'detect', //позволяет eslint определить версию реакта
       },
     },
     plugins: {
@@ -23,6 +23,10 @@ module.exports = [
       prettier: require('eslint-plugin-prettier'),
       'react-refresh': require('eslint-plugin-react-refresh'),
       tailwindcss: require('eslint-plugin-tailwindcss'),
+      'react/jsx-boolean-value': ['error', 'never'],
+      '@typescript-eslint/no-inferrable-types': 'warn',
+      'react-hooks/exhaustive-deps': 'warn'
+      
     },
     rules: {
       'react/prop-types': 'off',
@@ -41,6 +45,8 @@ module.exports = [
       ],
       'tailwindcss/classnames-order': 'warn',
       'tailwindcss/no-custom-classname': 'off',
+      'prefer-const': 'warn',
+
     },
   },
 ];
