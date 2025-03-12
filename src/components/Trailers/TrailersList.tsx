@@ -39,7 +39,7 @@ export const NewTrailers: React.FC = () => {
       <div className={classes.treilersHead}>
         <h2>Новые трейлеры</h2>
         <Link to="/media" className={classes.linkToMedia}>
-          Перейти на другую страницу
+          Все трейлеры
           <img src={RightArrow} alt="Right arrow" />
         </Link>
       </div>
@@ -111,7 +111,6 @@ const useStyles = createUseStyles({
     position: "relative",
     width: "100%",
     marginBottom: "78px",
-    
   },
   content: {
     display: "flex",
@@ -119,7 +118,6 @@ const useStyles = createUseStyles({
     overflowX: "auto",
     maxWidth: "100%",
     scrollbarWidth: "none",
-   
   },
   scrollbar: {
     width: "100%",
@@ -147,6 +145,7 @@ const useStyles = createUseStyles({
     display: "flex",
     flexDirection: "column",
     alignItems: "start",
+    position: "relative", 
 
     "& img": {
       borderRadius: "10px",
@@ -163,7 +162,6 @@ const useStyles = createUseStyles({
         height: "245px",
       },
     },
-
     "& h3": {
       marginTop: "10px",
       fontSize: "13px",
@@ -176,6 +174,12 @@ const useStyles = createUseStyles({
         fontSize: "20px",
       },
     },
+  },  
+  
+  trailerContainer: {
+    position: "relative",
+    width: "100%",
+    height: "100%",
   },
   overlayButton: {
     position: "absolute",
@@ -214,11 +218,6 @@ const useStyles = createUseStyles({
       },
     },
   },
-  trailerContainer: {
-    position: "relative",
-    width: "100%",
-    height: "100%",
-  },
 
   selectedOverlayButton: {
     position: "absolute",
@@ -230,8 +229,8 @@ const useStyles = createUseStyles({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#3657CB",
-    opacity: 0.65,
+    backgroundColor: "black",
+    opacity: 0.5,
     transition: "background-color 0.3s ease-in-out",
     borderRadius: "10px",
     zIndex: 1,
@@ -239,7 +238,6 @@ const useStyles = createUseStyles({
     border: "none",
     "& img": {
       maxWidth: "5%",
-
       objectFit: "contain",
     },
   },

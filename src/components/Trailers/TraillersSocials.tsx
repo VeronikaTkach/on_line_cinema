@@ -2,47 +2,6 @@ import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import PointsButton from "../../assets/images/threepoints.svg";
 import { createUseStyles } from "react-jss";
 
-const useStyles = createUseStyles({
-  container: {
-    display: "flex",
-    gap: "15px",
-    alignItems: "center",
-  },
-  socialLink: {
-    width: "40px",
-    height: "40px",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "start",
-  },
-
-  dropdown: {
-    display: "flex",
-    gap: "8px",
-    backgroundColor: "#1B2133",
-    border: "1px solid #D1D5DB",
-    borderRadius: "8px",
-    zIndex: 100,
-  },
-  icon: {
-    width: "24px",
-    height: "11px",
-    filter:
-      "brightness(0) invert(45%) sepia(10%) saturate(300%) hue-rotate(200deg)",
-    transition: "filter 0.3s ease",
-    "&:hover": {
-      filter: "brightness(0) invert(1) saturate(100%) sepia(0)"},
-   
-    "@media (min-width: 1024px)": {
-     
-      height: "14px",
-    },
-    "@media (min-width: 1440px)": {
-     
-      height: "17px",
-  },
-}});
-
 const socialIcons = [
   { src: "/src/assets/images/vk.svg", alt: "VK" },
   { src: "/src/assets/images/instagram.svg", alt: "Instagram" },
@@ -103,3 +62,42 @@ export const TrailerSocials = () => {
     </div>
   );
 };
+const useStyles = createUseStyles({
+  container: {
+    display: "flex",
+    gap: "15px",
+    alignItems: "center",
+  },
+  socialLink: {
+    width: "40px",
+    height: "40px",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "start",
+  },
+
+  dropdown: {
+    display: "flex",
+    gap: "8px",
+    backgroundColor: "#1B2133",
+    border: "1px solid #D1D5DB",    
+    borderRadius: "8px",
+    zIndex: 100,
+  },
+  icon: {
+    width: "17px",
+    height: "11px",
+    filter:
+      "brightness(0) invert(45%) sepia(10%) saturate(300%) hue-rotate(200deg)",
+    transition: "filter 0.3s ease",
+    "&:hover": {
+      filter: "brightness(0) invert(1) saturate(100%) sepia(0)",
+    },
+    "@media (min-width: 1024px)": {
+      height: "14px",
+    },
+    "@media (min-width: 1440px)": {
+      height: "17px",
+    },
+  },
+});

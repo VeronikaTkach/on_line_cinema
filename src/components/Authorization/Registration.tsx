@@ -7,7 +7,7 @@ import { CloseButton } from "./CloseButton";
 
 const labelStyles =
   "mt-1 font-qanelas lg:text-[100%] md:text-[75%] sm:text-[30%] text-sm text-white lg:whitespace-nowrap  md:whitespace-normal sm:whitespace-normal";
-const checkboxStyles = "mr-2 w-5 h-5rounded-lg  accent-yellows-lime";
+const checkboxStyles = "mr-2 w-5 h-5 rounded-lg  accent-yellows-lime";
 
 const registrationSchema = z
   .object({
@@ -67,10 +67,24 @@ export const Registration: React.FC<RegisterModalProps> = ({
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm<RegistrationFormData>({
     resolver: zodResolver(registrationSchema),
   });
+
+  const formatPhone = (value: string) => {
+    let formatted = value.replace(/\D/g, "");
+
+    if (formatted.startsWith("8")) {
+      formatted = "+7" + formatted.slice(1);
+    } else if (!formatted.startsWith("7")) {
+      formatted = "+7" + formatted;
+    } else {
+      formatted = "+" + formatted;
+    }
+    return formatted;
+  };
 
   const onSubmit = (data: RegistrationFormData) => {
     console.log("Submitted data:", data);
@@ -137,6 +151,12 @@ export const Registration: React.FC<RegisterModalProps> = ({
             className={inputStyles}
             type="text"
             placeholder="Номер телефона"
+            onBlur={(e) => {
+              const formattedPhone = formatPhone(e.target.value);
+              if (formattedPhone !== "+7") {
+                setValue("phone", formattedPhone, { shouldValidate: true });
+              }
+            }}
           />
           {errors.email && (
             <div style={{ color: "red", marginBottom: "8px" }}>
