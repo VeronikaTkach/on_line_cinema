@@ -1,3 +1,6 @@
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+
+
 export type MovieType = {
   id: string;
   title: string;
@@ -5,7 +8,10 @@ export type MovieType = {
   genre: string[];
   likes: number;
   dislikes: number;
+  usersLike: number[];
+  usersDislike: number[];
   image: string;
+
 };
 
 export type PersonType = {
@@ -29,7 +35,7 @@ export type FakeDatabaseType = {
   movies: MovieType[];
   persons: PersonType[];
 };
-
+// на каждый фильм массив с лайками дизлайками и 
 export const fakeDatabase: FakeDatabaseType = {
   movies: [
     {
@@ -38,100 +44,14 @@ export const fakeDatabase: FakeDatabaseType = {
       rating: "6.70",
       genre: ["триллер"],
       likes: 222,
-      dislikes:111,
+      usersLike: [1, 2, 3],
+      dislikes: 333,
+      usersDislike: [4, 5, 6],
       image:
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSaOoN8kN6jA46g-oDZHf_WExHFvhr869H79Q&s",
     },
-    {
-      id: "2",
-      title: "Джокер",
-      rating: "8.50",
-      genre: ["триллер", "драма", "криминал"],
-      likes: 999,
-      dislikes: 88,
-      image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRy3fSfoZTBCRrcT9_s3Wua9moYhG8VOYOcuA&s",
-    },
-    {
-      id: "3",
-      title: "Начало",
-      rating: "8.80",
-      genre: ["триллер", "научная фантастика", "драма"],
-      likes: 777,
-      dislikes: 666,
-      image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSsQXiWIXXiUit3vgzZvjCgIMGGhnNKCvx1w&s",
-    },
-    {
-      id: "4",
-      title: "Матрица",
-      rating: "8.70",
-      genre: ["научная фантастика", "боевик", "драма"],
-      likes: 555,
-      dislikes: 444,
-      image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBSCFdhe31YTtfnpIHBbJZqVyPSZUxhwiltQ&s",
-    },
-    {
-      id: "5",
-      title: "Побег из Шоушенка",
-      rating: "9.30",
-      genre: ["драма", "криминал"],
-      likes: 333,
-      dislikes: 222,
-      image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXlCqox8TkefRkm6AoUg8yxOwKlLCia8-pTA&s",
-    },
-    {
-      id: "6",
-      title: "Темный рыцарь",
-      rating: "9.00",
-      genre: ["боевик", "драма", "криминал"],
-      likes: 111,
-      dislikes: 999,
-      image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRuUzeaYLRfo8o6Gz5vtkRPiVhTsb3MGXbJSg&s",
-    },
-    {
-      id: "7",
-      title: "Интерстеллар",
-      rating: "8.60",
-      genre: ["научная фантастика", "драма"],
-      likes: 888,
-      dislikes: 777,
-      image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBUj7vKc1FWtxeuQfSI7ocdS8bzy5eDgoxAA&s",
-    },
-    {
-      id: "8",
-      title: "Бойцовский клуб",
-      rating: "8.80",
-      genre: ["драма", "криминал"],
-      likes: 666,
-      dislikes: 555,
-      image:
-        "https://s1.afisha.ru/mediastorage/a6/a0/81e2d43fa763441294fad29fa0a6.jpg",
-    },
-    {
-      id: "9",
-      title: "Рапунцель: Запутанная история",
-      rating: "8.20",
-      genre: ["приключения", "семейный", "фэнтези"],
-      likes: 444,
-      dislikes: 333,
-      image:
-        "https://play-lh.googleusercontent.com/lMtuaBGBTlDeRLgBAhYbJzwCCiSyPvwIejWu2w6Nicrg9DXW5etJRRv_Q472Lj_T4xuT",
-    },
-    {
-      id: "10",
-      title: "Джон Уик",
-      rating: "7.90",
-      genre: ["боевик", "триллер"],
-      likes: 222,
-      dislikes: 111,
-      image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvB_E8q22HoTwdcog1YAFSQZsV8amHjQDVNA&s",
-    },
+   
+   
   ],
   persons: [
     {
@@ -374,3 +294,58 @@ export const fakeDatabase: FakeDatabaseType = {
     },
   ],
 };
+type MoviesState = {
+  fakeDatabase: FakeDatabaseType;
+};
+
+type CheckLikesPayload = {
+  id: string;
+  personId: number;
+  isLike: boolean;
+};
+
+const MoviesSlice = createSlice({
+  name: 'movies',
+  initialState:{fakeDatabase} as MoviesState,
+  reducers:{ 
+    checkLikes: (state: MoviesState, payload: PayloadAction<CheckLikesPayload>) => {
+      state.fakeDatabase.movies = state.fakeDatabase.movies.map(movie => {
+        if (movie.id === payload.id) {
+          const newLikes = movie.usersLike.find(user => user === payload.pesronId);
+          const newDisLikes = movie.usersDislike.find(user => user === payload.pesronId);
+          if (!newLikes && !newDisLikes){
+            if (payload.isLike) {
+              movie.usersLike.push(payload.pesronId)
+              movie.likes = movie.likes + 1
+            } else {
+              movie.newDisLikes.push(payload.pesronId)
+              movie.dislikes = movie.dislikes + 1
+            }
+          }
+          if ((newLikes && payload.isLike) || (newDisLikes && !payload.isLike)){
+            return
+          }
+          if (newDisLikes && payload.isLike){
+            movie.newDisLikes = movie.usersLike.filter(user => user !== payload.pesronId)
+            movie.usersLike.push(payload.pesronId)
+            movie.likes = movie.likes + 1
+            movie.dislikes = movie.dislikes - 1
+          }
+          if (newLikes && !payload.isLike){
+            movie.usersLike = movie.usersLike.filter(user => user !== payload.pesronId)
+            movie.newDisLikes.push(payload.pesronId)
+            movie.likes = movie.likes - 1
+            movie.dislikes = movie.dislikes + 1
+          }
+        }
+      })
+    }  
+  },
+  extraReducers: (builder) => {   
+  }
+});
+
+export default MoviesSlice.reducer;
+
+
+//
