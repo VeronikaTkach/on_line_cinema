@@ -1,58 +1,12 @@
-import React from "react";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Modal } from "../Modal/Modal";
 import { CloseButton } from "./CloseButton";
-
-const labelStyles =
-  "mt-1 font-qanelas lg:text-[100%] md:text-[75%] sm:text-[30%] text-sm text-white lg:whitespace-nowrap  md:whitespace-normal sm:whitespace-normal";
-const checkboxStyles = "mr-2 w-5 h-5 rounded-lg  accent-yellows-lime";
-
-const registrationSchema = z
-  .object({
-    login: z.string().min(3, "Логин должен содержать минимум 3 символа."),
-    password: z.string().min(6, "Пароль должен содержать минимум 6 символов."),
-    confirmPassword: z
-      .string()
-      .min(6, "Пароль должен содержать минимум 6 символов."),
-    phone: z
-      .string()
-      .regex(
-        /^(?:\+?\d{1,3})?[ ]?\(?\d{1,4}\)?[ ]?\d{1,4}[ ]?\d{1,4}[ ]?\d{1,4}$/,
-        "Некорректный формат телефона."
-      ),
-    email: z.string().email("Некорректный формат почты."),
-    privacy: z
-      .boolean()
-      .refine(
-        (val) => val === true,
-        "Необходимо согласиться с политикой конфиденциальности."
-      ),
-    dataProcessing: z
-      .boolean()
-      .refine(
-        (val) => val === true,
-        "Необходимо согласиться на обработку персональных данных."
-      ),
-  })
-  .refine((data) => data.password === data.confirmPassword, {
-    message: "Пароли не совпадают",
-    path: ["confirmPassword"],
-  });
-
-type RegistrationFormData = z.infer<typeof registrationSchema>;
-
-interface RegisterModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-  onBack: () => void;
-  inputStyles: string;
-  buttonStyles: string;
-  titleStyles: string;
-  contentStyles: string;
-  wrapperStyles: string;
-}
+import { RegisterModalProps } from "../../types/types";
+import { createUseStyles } from "react-jss";
+import { registrationSchema, RegistrationFormData } from "./schema";
+import axios from "axios";
 
 export const Registration: React.FC<RegisterModalProps> = ({
   isOpen,
@@ -68,10 +22,13 @@ export const Registration: React.FC<RegisterModalProps> = ({
     register,
     handleSubmit,
     setValue,
+    reset,
     formState: { errors },
   } = useForm<RegistrationFormData>({
     resolver: zodResolver(registrationSchema),
   });
+
+  const classes = useStyles();
 
   const formatPhone = (value: string) => {
     let formatted = value.replace(/\D/g, "");
@@ -86,32 +43,41 @@ export const Registration: React.FC<RegisterModalProps> = ({
     return formatted;
   };
 
-  const onSubmit = (data: RegistrationFormData) => {
-    console.log("Submitted data:", data);
-    onClose();
-    alert("Вы успешно зарегистрированы!");
+  const SubmitToServer = async (data: RegistrationFormData) => {
+    try {
+      const response = await axios.post("API_URL", data);
+      console.log("resp:", response.data);
+      onClose();
+    } catch (error) {
+      console.error(error);
+    }
   };
+
+  const onSubmit = (data: RegistrationFormData) => {
+    SubmitToServer(data);
+  };
+
+  useEffect(() => {
+    if (!isOpen) {
+      reset();
+    }
+  }, [isOpen, reset]);
 
   return (
     <Modal isOpen={isOpen} onOpenChange={onClose} noColor>
       <div className={contentStyles} onClick={(e) => e.stopPropagation()}>
-        <div className="flex justify-between m-5">
-          <button
-            onClick={onBack}
-            className="font-qanelas font-bold text-base hover:text-yellows-butter"
-          >
+        <div className={classes.bckBtnContainer}>
+          <button onClick={onBack} className={classes.bckBtn}>
             Назад
           </button>
           <CloseButton onClick={onClose} />
         </div>
-        <div className="flex justify-center">
+        <div className={classes.titleContainer}>
           <h1 className={titleStyles}>Зарегистрироваться</h1>
         </div>
         <form onSubmit={handleSubmit(onSubmit)} className={wrapperStyles}>
           {errors.login && (
-            <div style={{ color: "red", marginBottom: "8px" }}>
-              {errors.login.message}
-            </div>
+            <div className={classes.inputError}>{errors.login.message}</div>
           )}
           <input
             {...register("login")}
@@ -120,9 +86,7 @@ export const Registration: React.FC<RegisterModalProps> = ({
             placeholder="Придумайте логин"
           />
           {errors.password && (
-            <div style={{ color: "red", marginBottom: "8px" }}>
-              {errors.password.message}
-            </div>
+            <div className={classes.inputError}>{errors.password.message}</div>
           )}
           <input
             {...register("password")}
@@ -131,7 +95,7 @@ export const Registration: React.FC<RegisterModalProps> = ({
             placeholder="Придумайте пароль"
           />
           {errors.confirmPassword && (
-            <div style={{ color: "red", marginBottom: "8px" }}>
+            <div className={classes.inputError}>
               {errors.confirmPassword.message}
             </div>
           )}
@@ -142,9 +106,7 @@ export const Registration: React.FC<RegisterModalProps> = ({
             placeholder="Повторите пароль"
           />
           {errors.phone && (
-            <div style={{ color: "red", marginBottom: "8px" }}>
-              {errors.phone.message}
-            </div>
+            <div className={classes.inputError}>{errors.phone.message}</div>
           )}
           <input
             {...register("phone")}
@@ -159,45 +121,38 @@ export const Registration: React.FC<RegisterModalProps> = ({
             }}
           />
           {errors.email && (
-            <div style={{ color: "red", marginBottom: "8px" }}>
-              {errors.email.message}
-            </div>
+            <div className={classes.inputError}>{errors.email.message}</div>
           )}
           <input
             {...register("email")}
             className={inputStyles}
             placeholder="E-mail"
           />
-          <div className="flex flex-col items-start gap-2 mb-3 w-[52%] h-auto">
+          <div className={classes.checkboxContainer}>
             {errors.privacy && (
-              <div style={{ color: "red", marginBottom: "8px" }}>
-                {errors.privacy.message}
-              </div>
+              <div className={classes.inputError}>{errors.privacy.message}</div>
             )}
-            <label className={labelStyles}>
+            <label className={classes.label}>
               <input
                 {...register("privacy")}
-                className={checkboxStyles}
+                className={classes.checkbox}
                 type="checkbox"
               />
               Соглашаюсь на условия{" "}
-              <a
-                href="#"
-                className="font-qanelas lg:text-[100%] md:text-[75%] sm:text-[30%] text-sm text-white underline underline-offset-4 hover:text-yellows-butter"
-              >
+              <a href="#" className={classes.privacyLink}>
                 политики конфиденциальности
               </a>
             </label>
 
             {errors.dataProcessing && (
-              <div style={{ color: "red", marginBottom: "8px" }}>
+              <div className={classes.inputError}>
                 {errors.dataProcessing.message}
               </div>
             )}
-            <label className={labelStyles}>
+            <label className={classes.label}>
               <input
                 {...register("dataProcessing")}
-                className={checkboxStyles}
+                className={classes.checkbox}
                 type="checkbox"
               />
               Соглашаюсь на обработку персональных данных
@@ -205,8 +160,7 @@ export const Registration: React.FC<RegisterModalProps> = ({
           </div>
           <button
             type="submit"
-            className={`btn-default-yellow ${buttonStyles}`}
-            style={{ marginBottom: "96px" }}
+            className={`btn-default-yellow ${buttonStyles} ${classes.button}`}
           >
             Зарегистрироваться
           </button>
@@ -215,3 +169,80 @@ export const Registration: React.FC<RegisterModalProps> = ({
     </Modal>
   );
 };
+
+const useStyles = createUseStyles({
+  label: {
+    marginTop: "8px",
+    fontFamily: "'Qanelas', sans-serif",
+    fontSize: "1rem",
+    color: "#fff",
+    whiteSpace: "nowrap",
+    "@media (max-width: 1024px)": {
+      fontSize: "0.75rem",
+    },
+    "@media (max-width: 768px)": {
+      fontSize: "0.3rem",
+    },
+  },
+  bckBtnContainer: {
+    display: "flex",
+    justifyContent: "space-between",
+    margin: "1.25rem",
+  },
+  bckBtn: {
+    Family: "'Qanelas', sans-serif",
+    fontWeight: "bold",
+    fontSize: "16px",
+    "&:hover": {
+      color: "#FFF065",
+    },
+  },
+  titleContainer: {
+    display: "flex",
+    justifyContent: "center",
+  },
+  checkboxContainer: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "flex-start",
+    gap: "8px",
+    marginBottom: "12px",
+    height: "auto",
+  },
+  checkbox: {
+    marginRight: "8px",
+    width: "20px",
+    height: "20px",
+    borderRadius: "5px",
+    accentColor: "#A5D35F",
+  },
+  privacyLink: {
+    fontFamily: "'Qanelas', sans-serif",
+    fontSize: "14px",
+    color: "white",
+    textDecoration: "underline",
+    textUnderlineOffset: "4px",
+    transition: "color 0.3s ease",
+
+    "&:hover": {
+      color: "#FFF065",
+    },
+
+    "@media (max-width: 640px)": {
+      fontSize: "30%",
+    },
+    "@media (max-width: 768px)": {
+      fontSize: "75%",
+    },
+    "@media (max-width: 1024px)": {
+      fontSize: "100%",
+    },
+  },
+  inputError: {
+    color: "red",
+    marginBottom: "8px",
+  },
+  button: {
+    marginBottom: "96px",
+  },
+});

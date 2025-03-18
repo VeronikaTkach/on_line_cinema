@@ -5,3 +5,16 @@ export interface User {
   phone: string,
   isLoading: boolean
 }
+
+//autorization types:
+
+export interface RegisterModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  onBack: () => void;
+  inputStyles: string;
+  buttonStyles: string;
+  titleStyles: string;
+  contentStyles: string;
+  wrapperStyles: string;
+}
