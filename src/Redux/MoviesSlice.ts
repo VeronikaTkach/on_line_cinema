@@ -1,5 +1,4 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export type MovieType = {
   id: string;
@@ -11,9 +10,7 @@ export type MovieType = {
   usersLike: number[];
   usersDislike: number[];
   image: string;
-
 };
-
 export type PersonType = {
   id: string;
   name: string;
@@ -35,8 +32,14 @@ export type FakeDatabaseType = {
   movies: MovieType[];
   persons: PersonType[];
 };
-// на каждый фильм массив с лайками дизлайками и 
-export const fakeDatabase: FakeDatabaseType = {
+
+export type CheckLikesPayload = {
+  id: string;
+  personId: number;
+  isLike: boolean;
+};
+
+const initialState: FakeDatabaseType = {
   movies: [
     {
       id: "1",
@@ -47,11 +50,8 @@ export const fakeDatabase: FakeDatabaseType = {
       usersLike: [1, 2, 3],
       dislikes: 333,
       usersDislike: [4, 5, 6],
-      image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSaOoN8kN6jA46g-oDZHf_WExHFvhr869H79Q&s",
+      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSaOoN8kN6jA46g-oDZHf_WExHFvhr869H79Q&s",
     },
-   
-   
   ],
   persons: [
     {
@@ -294,58 +294,41 @@ export const fakeDatabase: FakeDatabaseType = {
     },
   ],
 };
-type MoviesState = {
-  fakeDatabase: FakeDatabaseType;
-};
 
-type CheckLikesPayload = {
-  id: string;
-  personId: number;
-  isLike: boolean;
-};
-
-const MoviesSlice = createSlice({
-  name: 'movies',
-  initialState:{fakeDatabase} as MoviesState,
-  reducers:{ 
-    checkLikes: (state: MoviesState, payload: PayloadAction<CheckLikesPayload>) => {
-      state.fakeDatabase.movies = state.fakeDatabase.movies.map(movie => {
-        if (movie.id === payload.id) {
-          const newLikes = movie.usersLike.find(user => user === payload.pesronId);
-          const newDisLikes = movie.usersDislike.find(user => user === payload.pesronId);
-          if (!newLikes && !newDisLikes){
-            if (payload.isLike) {
-              movie.usersLike.push(payload.pesronId)
-              movie.likes = movie.likes + 1
-            } else {
-              movie.newDisLikes.push(payload.pesronId)
-              movie.dislikes = movie.dislikes + 1
-            }
-          }
-          if ((newLikes && payload.isLike) || (newDisLikes && !payload.isLike)){
-            return
-          }
-          if (newDisLikes && payload.isLike){
-            movie.newDisLikes = movie.usersLike.filter(user => user !== payload.pesronId)
-            movie.usersLike.push(payload.pesronId)
-            movie.likes = movie.likes + 1
-            movie.dislikes = movie.dislikes - 1
-          }
-          if (newLikes && !payload.isLike){
-            movie.usersLike = movie.usersLike.filter(user => user !== payload.pesronId)
-            movie.newDisLikes.push(payload.pesronId)
-            movie.likes = movie.likes - 1
-            movie.dislikes = movie.dislikes + 1
-          }
-        }
-      })
-    }  
-  },
-  extraReducers: (builder) => {   
+const moviesSlice = createSlice({
+  name: "movies",
+  initialState,
+  reducers: {
+    checkLikes: (state, action: PayloadAction<CheckLikesPayload>) => {
+      const { id, personId, isLike } = action.payload;     
+      const movie = state.movies.find(movie => movie.id === id);
+      if (!movie) return;
+      const hasLiked = movie.usersLike.includes(personId);
+      const hasDisliked = movie.usersDislike.includes(personId);
+      if (hasLiked && isLike || hasDisliked && !isLike) return;
+      if (!hasLiked && !hasDisliked) {
+        isLike ? movie.usersLike.push(personId) : movie.usersDislike.push(personId);
+        isLike ? movie.likes++ : movie.dislikes++;
+            } 
+      else if (hasDisliked && isLike) {
+        movie.usersDislike = movie.usersDislike.filter(user => user !== personId);
+        movie.usersLike.push(personId);
+        movie.likes++;
+        movie.dislikes--;
+      } 
+      else if (hasLiked && !isLike) {
+        movie.usersLike = movie.usersLike.filter(user => user !== personId);
+        movie.usersDislike.push(personId);
+        movie.likes--;
+        movie.dislikes++;
+      }
+    }
   }
 });
 
-export default MoviesSlice.reducer;
+export const { checkLikes } = moviesSlice.actions;
+export default moviesSlice.reducer;
 
 
-//
+
+
