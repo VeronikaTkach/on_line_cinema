@@ -1,48 +1,39 @@
-import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../Redux/store";
+import { checkLikes } from "../../Redux/MoviesSlice";
 import { createUseStyles } from "react-jss";
-import { fakeDatabase } from "../../Redux/FakeBD";
+import { LikeDislikeProps } from "../../types/types";
 import LikeButton from "../../assets/images/like.svg";
 
-interface LikeDislikeProps {
-  movieId: string | null;
-}
-
-export const LikeDislike: React.FC<LikeDislikeProps> = ({ movieId }) => {
+export const LikeDislike: React.FC<LikeDislikeProps> = ({
+  movieId,
+  personId,
+}) => {
   const classes = useStyles();
-  const movie = fakeDatabase.movies.find((m) => m.id === movieId);
+  const dispatch = useDispatch();
+
+  const movie = useSelector((state: RootState) =>
+    state.movies.movies.find((m) => m.id === movieId)
+  );
+
   if (!movie) return null;
 
-  const [likes, setLikes] = useState<number>(movie.likes);
-  const [dislikes, setDislikes] = useState<number>(movie.dislikes);
-  const [userVote, setUserVote] = useState<"like" | "dislike" | null>(null);
+  const hasLiked = movie.usersLike.includes(personId);
+  const hasDisliked = movie.usersDislike.includes(personId);
 
-  useEffect(() => {
-    setLikes(movie.likes);
-    setDislikes(movie.dislikes);
-    setUserVote(null);
-  }, [movieId]);
-
-  const handleLike = () => {
-    if (userVote === "like") return;
-    setLikes(likes + 1);
-    if (userVote === "dislike") setDislikes(dislikes - 1);
-    setUserVote("like");
-  };
-
-  const handleDislike = () => {
-    if (userVote === "dislike") return;
-    setDislikes(dislikes + 1);
-    if (userVote === "like") setLikes(likes - 1);
-    setUserVote("dislike");
+  const handleVote = (isLike: boolean) => {
+    if ((isLike && !hasLiked) || (!isLike && !hasDisliked)) {
+      dispatch(checkLikes({ id: movieId, personId, isLike }));
+    }
   };
 
   return (
     <div className={classes.container}>
-      <button onClick={handleLike} className={classes.button}>
+      <button onClick={() => handleVote(true)} className={classes.button}>
         <img className={classes.handimage} src={LikeButton} alt="Like" />
       </button>
       <button
-        onClick={handleDislike}
+        onClick={() => handleVote(false)}
         className={`${classes.button} ${classes.dislikeButton}`}
       >
         <img
@@ -52,14 +43,14 @@ export const LikeDislike: React.FC<LikeDislikeProps> = ({ movieId }) => {
           alt="Dislike"
         />
       </button>
-      <div className={classes.counter}>{likes}</div>
-      <div className={classes.counter}>{dislikes}</div>
+      <div className={classes.counter}>{movie.likes}</div>
+      <div className={classes.counter}>{movie.dislikes}</div>
     </div>
   );
 };
 
 const useStyles = createUseStyles({
-  container: {   
+  container: {
     display: "grid",
     gridTemplateColumns: "repeat(2, 1fr)",
     gridTemplateRows: "repeat(2, 1fr)",

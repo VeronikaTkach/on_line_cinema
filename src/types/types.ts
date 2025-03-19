@@ -18,3 +18,9 @@ export interface RegisterModalProps {
   contentStyles: string;
   wrapperStyles: string;
 }
+
+//Trailers----LikesDislikes types:
+export interface LikeDislikeProps {
+  movieId: string;
+  personId: number;
+}
