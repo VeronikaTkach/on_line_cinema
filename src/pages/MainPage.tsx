@@ -1,6 +1,7 @@
 import { TrailersList } from "../components/Trailers/TrailersList";
 import NewsCard from "../components/NewsCard/NewsCard";
 import Films from "./Films";
+import PopularPersons from "../components/PopularPersons/PopularPersons";
 
 const MainPage = () => {
   return (
@@ -16,6 +17,7 @@ const MainPage = () => {
       image: '1',
     }}
     />
+      <PopularPersons/>
     </div>
   );
 };

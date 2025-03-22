@@ -1,8 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
 import UserSlice from './UserSlice';
+import ActorsSlice from './ActorsSlice';
 const store = configureStore({
   reducer: {
     user: UserSlice,
+    actors: ActorsSlice
   }
 });
 

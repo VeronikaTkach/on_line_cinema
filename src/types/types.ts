@@ -5,3 +5,11 @@ export interface User {
   phone: string,
   isLoading: boolean
 }
+export interface Actor {
+  place: number,
+  name_eng: string,
+  name_rus: string,
+  age: number,
+  id: number,
+  image: string
+}
